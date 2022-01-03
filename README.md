@@ -1,6 +1,9 @@
 # GeoJSON Generator
 ***add description***
 
+## Guidelines
+***add guidelines***
+
 ## Backlog
 * host
 * add more explanation to read me
