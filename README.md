@@ -2,6 +2,7 @@
 ***add description***
 
 ## Backlog
+* host
 * add more explanation to read me
 * add validation for feature params
 * add tooltips explaining each param (pull from turf.js)
