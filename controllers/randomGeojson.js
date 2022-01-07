@@ -31,7 +31,7 @@ exports.generateGeojson = (req, res, next) => {
             let randomPoints = randomPointCollection.features
             if (point.propertyOptions) {
                 randomPoints.forEach(randomPoint => {
-                    const featureProperties = generateFeatureProperties(propertyOptions)
+                    const featureProperties = generateFeatureProperties(point.propertyOptions)
                     randomPoint.properties = featureProperties
                 })
             }

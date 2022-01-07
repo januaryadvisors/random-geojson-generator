@@ -13,7 +13,7 @@ import { statusIsGood } from '../../utils/helpers'
 const SelectedBBOX = (props) => {
     return (
         <div>
-            <h2>Bounding Box</h2>
+            <h3>Bounding Box</h3>
             <div>
                 <strong>Min Longitude: </strong>{props.selectedBBOX.minLng}
             </div>
@@ -34,19 +34,37 @@ const SelectedBBOX = (props) => {
 const SelectedPointsTable = (props) => {
     return (
         <div>
-            <h2>Selected Points</h2>
-            <table>
+            <h3>Selected Points</h3>
+            <table rules="all">
                 <thead>
                     <tr>
-                        <th># of Features</th>
+                        <th rowSpan="2"># of Features</th>
+                        <th colSpan="5">Properties</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Values</th>
+                        <th>Min</th>
+                        <th>Max</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.selectedPoints.length > 0 ? props.selectedPoints.map((feature, i) => {
-                        return <tr key={`featureRow${i}`}>
-                            <td>{feature.num}</td>
-                        </tr>
-                    }) : <tr><td></td></tr>}
+                        return <>
+                            <tr key={`pointRow${i}`}>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
+                            </tr>
+                            {feature.propertyOptions.length > 0 ? feature.propertyOptions.map((propertyOption, n) => { return <tr key={`pointPropertyRow${i}${n}`}>
+                                <td>{propertyOption.name}</td>
+                                <td>{propertyOption.type}</td>
+                                <td>{propertyOption.values}</td>
+                                <td>{propertyOption.min}</td>
+                                <td>{propertyOption.max}</td>
+                                </tr>
+                            }) : <><td></td><td></td></>}
+                        </>
+                    }) : <tr><td><br/></td><td colSpan="5"></td></tr>}
                 </tbody>
             </table>
         </div>
@@ -56,25 +74,43 @@ const SelectedPointsTable = (props) => {
 const SelectedLinesTable = (props) => {
     return (
         <div>
-            <h2>Selected Lines</h2>
-            <table>
+            <h3>Selected Lines</h3>
+            <table rules="all">
                 <thead>
                     <tr>
-                        <th># of Features</th>
-                        <th># of Vertices</th>
-                        <th>Max Segment Length</th>
-                        <th>Max Segment Rotation</th>
+                        <th rowSpan="2"># of Features</th>
+                        <th rowSpan="2"># of Vertices</th>
+                        <th rowSpan="2">Max Segment Length</th>
+                        <th rowSpan="2">Max Segment Rotation</th>
+                        <th colSpan="5">Properties</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Values</th>
+                        <th>Min</th>
+                        <th>Max</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.selectedLines.length > 0 ? props.selectedLines.map((feature, i) => {
-                        return <tr key={`featureRow${i}`}>
-                            <td>{feature.num}</td>
-                            <td>{feature.numVertices}</td>
-                            <td>{feature.maxSegmentLength}</td>
-                            <td>{feature.maxSegmentRotation}</td>
-                        </tr>
-                    }) : <tr><td></td><td></td><td></td><td></td></tr>}
+                        return <>
+                            <tr key={`lineRow${i}`}>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.numVertices}</td>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.maxSegmentLength}</td>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.maxSegmentRotation}</td>
+                            </tr>
+                            {feature.propertyOptions.length > 0 ? feature.propertyOptions.map((propertyOption, n) => { return <tr key={`linePropertyRow${i}${n}`}>
+                                <td>{propertyOption.name}</td>
+                                <td>{propertyOption.type}</td>
+                                <td>{propertyOption.values}</td>
+                                <td>{propertyOption.min}</td>
+                                <td>{propertyOption.max}</td>
+                                </tr>
+                            }) : <><td></td><td></td></>}
+                        </>
+                    }) : <tr><td><br/></td><td></td><td></td><td></td><td colSpan="5"></td></tr>}
                 </tbody>
             </table>
         </div>
@@ -84,23 +120,41 @@ const SelectedLinesTable = (props) => {
 const SelectedPolygonsTable = (props) => {
     return (
         <div>
-            <h2>Selected Polygons</h2>
-            <table>
+            <h3>Selected Polygons</h3>
+            <table rules="all">
                 <thead>
                     <tr>
-                        <th># of Features</th>
-                        <th># of Vertices</th>
-                        <th>Max Radial Length</th>
+                        <th rowSpan="2"># of Features</th>
+                        <th rowSpan="2"># of Vertices</th>
+                        <th rowSpan="2">Max Radial Length</th>
+                        <th colSpan="5">Properties</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Values</th>
+                        <th>Min</th>
+                        <th>Max</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.selectedPolygons.length > 0 ? props.selectedPolygons.map((feature, i) => {
-                        return <tr key={`featureRow${i}`}>
-                            <td>{feature.num}</td>
-                            <td>{feature.numVertices}</td>
-                            <td>{feature.maxRadialLength}</td>
-                        </tr>
-                    }) : <tr><td></td><td></td><td></td></tr>}
+                        return <>
+                            <tr key={`polygonRow${i}`}>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.numVertices}</td>
+                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.maxRadialLength}</td>
+                            </tr>
+                            {feature.propertyOptions.length > 0 ? feature.propertyOptions.map((propertyOption, n) => { return <tr key={`polygonPropertyRow${i}${n}`}>
+                                <td>{propertyOption.name}</td>
+                                <td>{propertyOption.type}</td>
+                                <td>{propertyOption.values}</td>
+                                <td>{propertyOption.min}</td>
+                                <td>{propertyOption.max}</td>
+                                </tr>
+                            }) : <><td></td><td></td></>}
+                        </>
+                    }) : <tr><td><br/></td><td></td><td></td><td colSpan="5"></td></tr>}
                 </tbody>
             </table>
         </div>

@@ -1,5 +1,7 @@
 const selectRandomValue = (values) => {
-    return values[Math.floor(Math.random() * values.length)]
+    const valuesArray = values.split(',')
+    const trimmedValuesArray = valuesArray.map(value => value.trim())
+    return trimmedValuesArray[Math.floor(Math.random() * trimmedValuesArray.length)]
 }
 
 const generateRandomString = (min, max) => {
@@ -28,12 +30,13 @@ const generateRandomIntInclusive = (min, max) => {
     return Math.floor(Math.random() * (maxInt - minInt + 1) + minInt)
 }
 
-const generateRandomFloatInclusive = (min, max, minDecimal, maxDecimal) => {
+const generateRandomFloatInclusive = (min, max) => {
     const minFloat = parseFloat(min)
     const maxFloat = parseFloat(max)
     const randomFloat = Math.random() * (maxFloat - minFloat) + minFloat
-    const minDecimalInt = parseInt(minDecimal)
-    const maxDecimalInt = parseInt(maxDecimal)
+    // maybe make this a param at some point
+    const minDecimalInt = 0
+    const maxDecimalInt = 10
     const randomFloatLength = Math.floor(Math.random() * (maxDecimalInt - minDecimalInt + 1) + minDecimalInt)
     return randomFloat.toFixed(randomFloatLength)
 }
@@ -65,10 +68,11 @@ const generateFeatureProperties = (propertyOptions) => {
                 break
             case 'float_var_value':
                 // generate random float between min and max rounded to a decimal place between minDecimal and maxDecimal
-                property = generateRandomFloatInclusive(propertyOption.min, propertyOption.max, propertyOption.minDecimal, propertyOption.maxDecimal)
+                property = generateRandomFloatInclusive(propertyOption.min, propertyOption.max)
                 break
             default:
-                // error
+                // throw error
+                break
         }
         properties[`${propertyOption.name}`] = property
     })
