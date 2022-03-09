@@ -1,9 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { TextField } from '../general/FormFields';
 import { addPoint } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 
@@ -37,7 +35,8 @@ export const AddPoints = () => {
             onSubmit={submit}
         >
             <Form>
-                <TextField name="num" type="number" label="Number of features" />
+                <label htmlFor="num">Number of Features: </label>
+                <Field name="num" type="number" />
                 <PropertiesEditor />
                 <button type="submit">Submit</button>
             </Form>

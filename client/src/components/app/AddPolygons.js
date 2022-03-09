@@ -1,9 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
-import { useHistory } from 'react-router-dom';
-import { TextField } from '../general/FormFields';
 import { addPolygon } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 
@@ -39,9 +36,12 @@ export const AddPolygons = () => {
             onSubmit={submit}
         >
             <Form>
-                <TextField name="num" type="number" label="Number of features" />
-                <TextField name="numVertices" type="number" label="Number of vertices" />
-                <TextField name="maxRadialLength" type="number" label="Max radial length" />
+                <label htmlFor="num">Number of Features: </label>
+                <Field name="num" type="number" />
+                <label htmlFor="numVertices">Number of Vertices: </label>
+                <Field name="numVertices" type="number" />
+                <label htmlFor="maxRadialLength">Max Radial Length: </label>
+                <Field name="maxRadialLength" type="number" />
                 <PropertiesEditor />
                 <button type="submit">Submit</button>
             </Form>

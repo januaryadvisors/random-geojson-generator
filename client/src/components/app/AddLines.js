@@ -1,9 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { TextField } from '../general/FormFields';
 import { addLine } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 
@@ -40,10 +38,14 @@ export const AddLines = () => {
             onSubmit={submit}
         >
             <Form>
-                <TextField name="num" type="number" label="Number of features" />
-                <TextField name="numVertices" type="number" label="Number of vertices" />
-                <TextField name="maxSegmentLength" type="number" label="Max segment length" />
-                <TextField name="maxSegmentRotation" type="number" label="Max segment rotation" />
+                <label htmlFor="num">Number of Features: </label>
+                <Field name="num" type="number" />
+                <label htmlFor="numVertices">Number of Vertices: </label>
+                <Field name="numVertices" type="number" />
+                <label htmlFor="maxSegmentLength">Max Segment Length: </label>
+                <Field name="maxSegmentLength" type="number" />
+                <label htmlFor="maxSegmentRotation">Max Segment Rotation: </label>
+                <Field name="maxSegmentRotation" type="number" />
                 <PropertiesEditor />
                 <button type="submit">Submit</button>
             </Form>
