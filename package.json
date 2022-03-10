@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "if [ \"$DEPLOY_ENV\" = \"staging\" ]; then cd client && npm install && npm run build:staging; elif [ \"$DEPLOY_ENV\" = \"demo\" ]; then cd client && npm install && npm run build:demo; else cd client && npm install && npm run build; fi"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -19,7 +22,7 @@
     "mongoose": "^5.10.9",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
-    "react-router-dom": "^5.2.0",
-    "throng": "^4.0.0"
+    "throng": "^4.0.0",
+    "npm": "^8.1.1"
   }
 }
