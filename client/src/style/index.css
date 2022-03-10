@@ -102,10 +102,10 @@ input[type="file"] {
   display: none;
 }
 
-.Toastify__toast {
+/* .Toastify__toast {
   padding: 10px 10px 10px 15px !important;
   border-radius: 4px !important;
-}
+} */
 
 /* .Toastify__toast {
   padding: 10px !important;

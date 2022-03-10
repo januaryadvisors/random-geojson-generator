@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
+import { useHistory } from 'react-router-dom';
 import { addPolygon } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 
