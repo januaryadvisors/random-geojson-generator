@@ -5,7 +5,6 @@
 ***add guidelines***
 
 ## Backlog
-* style
 * host
 * add more explanation to read me
 * add validation for feature params
