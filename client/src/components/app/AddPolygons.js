@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addPolygon } from '../../actions/features'
+import { PropertiesEditor } from '../app/AddProperties'
 
 export const AddPolygons = () => {
     const history = useHistory();
@@ -19,6 +19,13 @@ export const AddPolygons = () => {
         num: '',
         numVertices: '',
         maxRadialLength: '',
+        propertyOptions: [{
+            name: '',
+            type: '',
+            values: '',
+            min: '',
+            max: '',
+        }],
     }
 
     // need to add validation
@@ -36,6 +43,7 @@ export const AddPolygons = () => {
                 <Field name="numVertices" type="number" />
                 <label htmlFor="maxRadialLength">Max Radial Length: </label>
                 <Field name="maxRadialLength" type="number" />
+                <PropertiesEditor />
                 <button type="submit">Submit</button>
             </Form>
         </Formik>

@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addLine } from '../../actions/features'
+import { PropertiesEditor } from '../app/AddProperties'
 
 export const AddLines = () => {
     const history = useHistory();
@@ -20,6 +20,13 @@ export const AddLines = () => {
         numVertices: '',
         maxSegmentLength: '',
         maxSegmentRotation: '',
+        propertyOptions: [{
+            name: '',
+            type: '',
+            values: '',
+            min: '',
+            max: '',
+        }],
     }
 
     // need to add validation
@@ -39,6 +46,7 @@ export const AddLines = () => {
                 <Field name="maxSegmentLength" type="number" />
                 <label htmlFor="maxSegmentRotation">Max Segment Rotation: </label>
                 <Field name="maxSegmentRotation" type="number" />
+                <PropertiesEditor />
                 <button type="submit">Submit</button>
             </Form>
         </Formik>

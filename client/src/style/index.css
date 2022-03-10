@@ -1,0 +1,275 @@
+/* :root {
+
+} */
+
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #37352B;
+  font-size: 18px;
+  height: 100vh;
+  background-color: #DCE8ED;
+}
+
+h1, h2 {
+  font-family: 'Saira Extra Condensed', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #6f6f6f;
+  border-radius: 4px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #121212;
+  font-size: 16px;
+  background-color: #FEFEFD;
+}
+
+input {
+  box-sizing: border-box;
+  /* box-shadow: inset 0 1px 4px rgba(0,0,0,.15); */
+}
+
+select {
+  box-sizing: border-box;
+  /* box-shadow: inset 0 -2px 4px rgba(0,0,0,.15); */
+}
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+textarea {
+  max-width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #121212;
+  font-size: 16px;
+  min-height: 70px;
+  max-height: 300px;
+  background-color: #FEFEFD;
+}
+
+p {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+p.error {
+  font-size: 14px;
+  margin: 0px;
+  margin-top: 10px;
+  color: #d9143a;
+}
+
+li {
+  margin-top: 0px;
+}
+
+button {
+  font-size: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  cursor: pointer;
+}
+
+a {
+  color: #167167;
+  word-wrap: break-word;
+}
+
+button:focus, input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 2px 2px rgb(93, 196, 255);
+}
+
+input[id*='react-select-'][id$='-input']:focus {
+  box-shadow: none !important;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* .Toastify__toast {
+  padding: 10px 10px 10px 15px !important;
+  border-radius: 4px !important;
+} */
+
+/* .Toastify__toast {
+  padding: 10px !important;
+  border-radius: 2px !important;
+  text-align: center !important;
+  max-width: 300px !important;
+  margin: 15px auto !important;
+  color: #777777 !important;
+}
+
+.Toastify__toast--success {
+  background-color: #fff !important;
+  border-left: 10px solid #7EC86C !important;
+  border-right: 10px solid #7EC86C !important;
+}
+
+.Toastify__toast--error {
+  background-color: #fff !important;
+  border-left: 10px solid #DF5050 !important;
+  border-right: 10px solid #DF5050 !important;
+}
+
+.Toastify__toast-container {
+  width: calc(100% - 310px) !important;
+  left: 310px !important;
+}
+
+@media only screen and (max-width: 760px) {
+  .Toastify__toast-container{
+    width: 100% !important;
+    left: 0 !important;
+  }
+} */
+
+.ReactVirtualized__List:focus{
+  outline: none;
+}
+
+.recharts-surface {
+  cursor: pointer;
+}
+
+.recharts-wrapper {
+  margin: 0px auto;
+}
+
+/* .recharts-wrapper:hover .recharts-xAxis {
+  opacity: 1 !important;
+}
+
+.recharts-wrapper:hover .recharts-yAxis {
+  opacity: 1 !important;
+} */
+
+.recharts-xAxis {
+  transition: 0.2s ease all;
+  font-size: 12px !important;
+  opacity: 1;
+}
+.recharts-yAxis {
+  transition: 0.2s ease all;
+  font-size: 12px !important;
+  opacity: 1;
+}
+
+.recharts-tooltip-label {
+  margin-bottom: 4px !important;
+  font-weight: 300;
+}
+
+.recharts-default-tooltip {
+  padding: 7px !important;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 2px;
+  text-transform: capitalize;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+}
+
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+
+/* NICER CHECKBOXES */
+
+.regular-checkbox {
+	margin-right: 10px;
+}
+
+/* .regular-checkbox {
+	-webkit-appearance: none;
+  -moz-appearance: none ;
+  appearance: none;
+	background-color: #FEFEFD;
+	border: 1px solid #89857F;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+	padding: 13px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #FEFEFD;
+}
+
+.regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  color: #FEFEFD;
+}
+
+.regular-checkbox:checked {
+	background-color: #167167;
+	border: 1px solid #167167;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+	color: #FEFEFD;
+}
+
+.regular-checkbox:checked:after {
+	content: '\2714';
+	font-size: 16px;
+	position: absolute;
+	top: 2px;
+	left: 7px;
+	color: #FEFEFD;
+}
+
+.regular-checkbox:focus {
+  box-shadow: 0 0 2px 4px rgb(93, 196, 255);
+  color: #FEFEFD;
+} */
+
+/* 
+  class to apply to elements that we want to be hidden for visual users, but readable by screenreader
+  https://stackoverflow.com/questions/62107074/how-to-hide-a-text-and-make-it-accessible-by-screen-reader
+*/
+.visually-hidden {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px; 
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
+  clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
+  white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+}

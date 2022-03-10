@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addPoint } from '../../actions/features'
+import { PropertiesEditor } from '../app/AddProperties'
 
 export const AddPoints = () => {
     const history = useHistory();
@@ -17,6 +17,13 @@ export const AddPoints = () => {
     const initValues = {
         type: 'Point',
         num: '',
+        propertyOptions: [{
+            name: '',
+            type: '',
+            values: '',
+            min: '',
+            max: '',
+        }],
     }
 
     // need to add validation
@@ -30,6 +37,7 @@ export const AddPoints = () => {
             <Form>
                 <label htmlFor="num">Number of Features: </label>
                 <Field name="num" type="number" />
+                <PropertiesEditor />
                 <button type="submit">Submit</button>
             </Form>
         </Formik>
