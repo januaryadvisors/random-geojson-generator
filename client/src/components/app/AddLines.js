@@ -4,6 +4,8 @@ import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addLine } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
+import { Header } from './Header'
+import { Footer } from './Footer'
 
 export const AddLines = () => {
     const history = useHistory();
@@ -31,6 +33,8 @@ export const AddLines = () => {
 
     // need to add validation
     return (
+        <>
+        <Header />
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -38,17 +42,19 @@ export const AddLines = () => {
             onSubmit={submit}
         >
             <Form>
-                <label htmlFor="num">Number of Features: </label>
-                <Field name="num" type="number" />
-                <label htmlFor="numVertices">Number of Vertices: </label>
-                <Field name="numVertices" type="number" />
-                <label htmlFor="maxSegmentLength">Max Segment Length: </label>
-                <Field name="maxSegmentLength" type="number" />
-                <label htmlFor="maxSegmentRotation">Max Segment Rotation: </label>
-                <Field name="maxSegmentRotation" type="number" />
+                <strong htmlFor="num">Number of Features: </strong>
+                <Field id="fieldSmall" name="num" type="number" />
+                <strong htmlFor="numVertices">Number of Vertices: </strong>
+                <Field id="fieldSmall" name="numVertices" type="number" />
+                <strong htmlFor="maxSegmentLength">Max Segment Length: </strong>
+                <Field id="fieldSmall" name="maxSegmentLength" type="number" />
+                <strong htmlFor="maxSegmentRotation">Max Segment Rotation: </strong>
+                <Field id="fieldSmall" name="maxSegmentRotation" type="number" />
                 <PropertiesEditor />
-                <button type="submit">Submit</button>
+                <button id="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
+        <Footer />
+        </>
     )
 }

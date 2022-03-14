@@ -9,6 +9,7 @@ import { AddLines } from './app/AddLines';
 import { AddPolygons } from './app/AddPolygons';
 
 const Wrapper = styled.div`
+  background-color: white;
   width: 100%;
 `;
 

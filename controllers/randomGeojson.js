@@ -2,7 +2,7 @@ const turf = require('@turf/random');
 const { generateFeatureProperties } = require('../utils/featureHelper')
 
 exports.generateGeojson = (req, res, next) => {
-    const  {
+    let  {
         bbox,
         points,
         lines,
@@ -15,7 +15,7 @@ exports.generateGeojson = (req, res, next) => {
     // set bounding box as option for all features if send in request
     // this will fail if they enter 0 as a coordinate right now
     if (bbox.minLng && bbox.minLat && bbox.maxLng && bbox.maxLat) {
-        const bbox = [parseFloat(bbox.minLng), parseFloat(bbox.minLat), parseFloat(bbox.maxLng), parseFloat(bbox.maxLat)]
+        bbox = [parseFloat(bbox.minLng), parseFloat(bbox.minLat), parseFloat(bbox.maxLng), parseFloat(bbox.maxLat)]
         options['bbox'] = bbox
     }
 

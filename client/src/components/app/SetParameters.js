@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { mutateAsync } from "redux-query";
 import { toast } from "react-toastify";
@@ -8,24 +8,25 @@ import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector
 import { generateGeoJSONQuery } from '../../actions/queries'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
+import { Header } from './Header'
+import { Footer } from './Footer'
 
 const SelectedBBOX = (props) => {
     return (
         <div>
             <h3>Bounding Box</h3>
             <div>
-                <strong>Min Longitude: </strong>{props.selectedBBOX.minLng}
+                <strong id="boundingBoxList">Min Longitude: </strong>{props.selectedBBOX.minLng}
             </div>
             <div>
-                <strong>Min Latitude: </strong>{props.selectedBBOX.minLat}
+                <strong id="boundingBoxList">Min Latitude: </strong>{props.selectedBBOX.minLat}
             </div>
             <div>
-                <strong>Max Longitude: </strong>{props.selectedBBOX.maxLng}
+                <strong id="boundingBoxList">Max Longitude: </strong>{props.selectedBBOX.maxLng}
             </div>
             <div>
-                <strong>Max Latitude: </strong>{props.selectedBBOX.maxLat}
+                <strong id="boundingBoxList">Max Latitude: </strong>{props.selectedBBOX.maxLat}
             </div>
-            
         </div>
     )
 }
@@ -169,6 +170,10 @@ export const SetParameters = () => {
     const selectedLines = useSelector(selectedLinesSelector);
     const selectedPolygons = useSelector(selectedPolygonsSelector);
 
+    const noDataEntered = () => {
+        return selectedBBOX.maxLat === "" && selectedBBOX.maxLng === "" && selectedBBOX.minLat === "" && selectedBBOX.minLng === "" && selectedPoints.length === 0 && selectedLines.length === 0 && selectedPolygons.length === 0
+    }
+
     const useGenerateGeoJSONQuery = (bbox, points, lines, polygons) => () => {
         dispatch(mutateAsync(generateGeoJSONQuery(bbox, points, lines, polygons))).then(({ status, body }) => {
             if (statusIsGood(status) && body) {
@@ -199,19 +204,25 @@ export const SetParameters = () => {
 
     return (
         <>
-            <div>
-                <button onClick={useGenerateGeoJSONQuery(selectedBBOX, selectedPoints, selectedLines, selectedPolygons)}>Generate GeoJSON</button>
-            </div>
-
+            <Header />
+            
             <SelectedBBOX selectedBBOX={selectedBBOX} />
             <button onClick={() => history.push('/set-bbox')}>Set Bounding Box</button>
 
             <SelectedPointsTable selectedPoints={selectedPoints} />
             <button onClick={() => history.push('/add-points')}>Add Points</button>
+
             <SelectedLinesTable selectedLines={selectedLines} />
             <button onClick={() => history.push('/add-lines')}>Add Lines</button>
+
             <SelectedPolygonsTable selectedPolygons={selectedPolygons} />
             <button onClick={() => history.push('/add-polygons')}>Add Polygons</button>
+            
+            <div>
+                <button disabled={noDataEntered()} onClick={() => dispatch(clearStore())}>Reset</button>
+                <button id="generateButton" onClick={useGenerateGeoJSONQuery(selectedBBOX, selectedPoints, selectedLines, selectedPolygons)}>Generate GeoJSON</button>
+            </div>    
+            <Footer />
         </>
     )
 }

@@ -16,19 +16,19 @@ export const PropertiesEditor = () => {
                         }
                         return (
                             <>
-                                <label htmlFor={`propertyOptions.${index}.name`}>Property Name: </label>
-                                <Field name={`propertyOptions.${index}.name`} type="text" />
-                                <label htmlFor={`propertyOptions.${index}.type`}>Property Type: </label>
-                                <Field name={`propertyOptions.${index}.type`} as="select">
+                                <strong htmlFor={`propertyOptions.${index}.name`}>Property Name: </strong>
+                                <Field id="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
+                                <strong htmlFor={`propertyOptions.${index}.type`}>Property Type: </strong>
+                                <Field id="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
                                     {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
                                 </Field>
-                                <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
-                                <Field name={`propertyOptions.${index}.values`} as='textarea' />
-                                <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
-                                <Field name={`propertyOptions.${index}.min`} type="number" />
-                                <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
-                                <Field name={`propertyOptions.${index}.max`} type="number" />
-
+                                <strong htmlFor={`propertyOptions.${index}.values`}>List of Values:</strong>
+                                <Field id="fieldLarge" name={`propertyOptions.${index}.values`} />
+                                <strong htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </strong>
+                                <Field id="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
+                                <strong htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </strong>
+                                <Field id="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
+                                
                                 <div>
                                     <button type="button" onClick={removeOption}>Remove Property</button>
                                 </div>

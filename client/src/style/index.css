@@ -10,11 +10,126 @@ body {
   color: #37352B;
   font-size: 18px;
   height: 100vh;
-  background-color: #DCE8ED;
+  background-color: white;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Saira Extra Condensed', sans-serif;
+  margin-top: 3%;
+  position: relative;
+  left: 7%;
+}
+
+strong {
+  margin-top: 2%;
+  margin-bottom: 3%;
+  position: relative;
+  left: 7%;
+}
+
+button {
+  font-size: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  cursor: pointer;
+  background-color: white;
+  color: #04AA6D;
+  font-weight: 500;
+  padding: 10px 25px;
+  min-width: 250px;
+  text-align: center;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  position: relative;
+  left: 7%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}
+
+#greenButton {
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  margin-top: 4%;
+  display: flex;
+  justify-content: center;
+}
+
+#generateButton {
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  margin-top: 4%;
+  margin-left: 1%;
+}
+
+#fieldSmall {
+  display: flex;
+  margin-bottom: 2%;
+  position: relative;
+  left: 7%;
+  width: 15%;
+}
+
+#fieldMedium {
+  display: flex;
+  margin-bottom: 2%;
+  position: relative;
+  left: 7%;
+  width: 25%;
+}
+
+#fieldLarge {
+  display: flex;
+  margin-bottom: 2%;
+  position: relative;
+  left: 7%;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #121212;
+  font-size: 16px;
+  min-height: 70px;
+  max-height: 300px;
+  background-color: #FEFEFD;
+}
+
+#boundingBoxList {
+  margin-right: 7%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 85%;  
+  position: relative;
+  left: 7%;
+}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+  border-color: white
 }
 
 code {
@@ -48,21 +163,6 @@ input[type='checkbox'] {
   height: 20px;
 }
 
-textarea {
-  max-width: 100%;
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 8px 10px;
-  border: 1px solid #454545;
-  border-radius: 4px;
-  font-family: 'Source Sans Pro', sans-serif;
-  color: #121212;
-  font-size: 16px;
-  min-height: 70px;
-  max-height: 300px;
-  background-color: #FEFEFD;
-}
-
 p {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -77,12 +177,6 @@ p.error {
 
 li {
   margin-top: 0px;
-}
-
-button {
-  font-size: 18px;
-  font-family: 'Source Sans Pro', sans-serif;
-  cursor: pointer;
 }
 
 a {
