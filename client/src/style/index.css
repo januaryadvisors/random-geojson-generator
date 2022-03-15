@@ -27,6 +27,10 @@ strong {
   left: 7%;
 }
 
+#param {
+  margin-right: 7%;
+}
+
 button {
   font-size: 18px;
   font-family: 'Source Sans Pro', sans-serif;
@@ -114,6 +118,29 @@ button[disabled]{
   margin-right: 7%;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  margin-left: 50%;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 table {
   border-collapse: collapse;
   width: 85%;  
@@ -121,7 +148,9 @@ table {
   left: 7%;
 }
 
-tr:hover {background-color: #ddd;}
+tr:hover {
+  background-color: #ddd;
+}
 
 th {
   padding-top: 12px;

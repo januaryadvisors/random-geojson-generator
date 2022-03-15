@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { setBBOX } from '../../actions/boundaries'
+import { toast } from "react-toastify";
 import { Header } from './Header'
 import { Footer } from './Footer'
 
@@ -11,8 +12,14 @@ export const SetBoundingBox = () => {
     const dispatch = useDispatch();
 
     const submit = (values) => {
-        dispatch(setBBOX(values))
-        history.push('/')
+        if (values.minLng !== "" && values.maxLng !== "" && values.minLng > values.maxLng) {
+            toast.error("Error. Min Longitude cannot be larger than Max Longitude.")
+        } else if (values.minLat !== "" && values.maxLat !== "" && values.minLat > values.maxLat) {
+            toast.error("Error. Min Latitude cannot be larger than Max Latitude.")
+        } else {
+            dispatch(setBBOX(values))
+            history.push('/')
+        }
     }
 
     const initValues = {

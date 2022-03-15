@@ -6,6 +6,7 @@ import { addPoint } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import infoImage from '../../assets/info.svg'
 
 export const AddPoints = () => {
     const history = useHistory();
@@ -39,7 +40,13 @@ export const AddPoints = () => {
             onSubmit={submit}
         >
             <Form>
-                <strong htmlFor="num">Number of Features: </strong>
+                <strong id="param" htmlFor="num">Number of Features: </strong>
+                
+                <div class="tooltip">
+                    <img src={infoImage} alt="info" />
+                    <span class="tooltiptext">Number of point to be added to the GeoJSON</span>
+                </div>
+                
                 <Field id="fieldSmall" name="num" type="number" />
                 <PropertiesEditor />
                 <button id="greenButton" type="submit">Submit</button>

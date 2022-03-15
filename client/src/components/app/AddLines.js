@@ -6,6 +6,8 @@ import { addLine } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import infoImage from '../../assets/info.svg'
+
 
 export const AddLines = () => {
     const history = useHistory();
@@ -42,13 +44,32 @@ export const AddLines = () => {
             onSubmit={submit}
         >
             <Form>
-                <strong htmlFor="num">Number of Features: </strong>
+                <strong id="param" htmlFor="num">Number of Features: </strong>
+                <div class="tooltip">
+                    <img src={infoImage} alt="info" />
+                    <span class="tooltiptext">Number of lines to be included in the GeoJSON</span>
+                </div>
                 <Field id="fieldSmall" name="num" type="number" />
-                <strong htmlFor="numVertices">Number of Vertices: </strong>
+
+                <strong id="param" htmlFor="numVertices">Number of Vertices: </strong>
+                <div class="tooltip">
+                    <img src={infoImage} alt="info" />
+                    <span class="tooltiptext">Number of coordinates each line will contain</span>
+                </div>
                 <Field id="fieldSmall" name="numVertices" type="number" />
-                <strong htmlFor="maxSegmentLength">Max Segment Length: </strong>
+
+                <strong id="param" htmlFor="maxSegmentLength">Max Segment Length: </strong>
+                <div class="tooltip">
+                    <img src={infoImage} alt="info" />
+                    <span class="tooltiptext">Max number of decimal degrees that a vertex can be from its predecessor</span>
+                </div>
                 <Field id="fieldSmall" name="maxSegmentLength" type="number" />
-                <strong htmlFor="maxSegmentRotation">Max Segment Rotation: </strong>
+
+                <strong id="param" htmlFor="maxSegmentRotation">Max Segment Rotation: </strong>
+                <div class="tooltip">
+                    <img src={infoImage} alt="info" />
+                    <span class="tooltiptext">Max number of radians that a line segment can turn from the previous segment</span>
+                </div>
                 <Field id="fieldSmall" name="maxSegmentRotation" type="number" />
                 <PropertiesEditor />
                 <button id="greenButton" type="submit">Submit</button>

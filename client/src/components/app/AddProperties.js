@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, FieldArray, useFormikContext } from 'formik';
 import { propertyTypeOptions } from '../../constants/formOptions'
+import infoImage from '../../assets/info.svg'
 
 export const PropertiesEditor = () => {
     // update
@@ -16,17 +17,41 @@ export const PropertiesEditor = () => {
                         }
                         return (
                             <>
-                                <strong htmlFor={`propertyOptions.${index}.name`}>Property Name: </strong>
+                                <strong id="param" htmlFor={`propertyOptions.${index}.name`}>Property Name: </strong>
+                                <div class="tooltip">
+                                    <img src={infoImage} alt="info" />
+                                    <span class="tooltiptext">Name of the new attribute</span>
+                                </div>
                                 <Field id="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
-                                <strong htmlFor={`propertyOptions.${index}.type`}>Property Type: </strong>
+
+                                <strong id="param" htmlFor={`propertyOptions.${index}.type`}>Property Type: </strong>
+                                <div class="tooltip">
+                                    <img src={infoImage} alt="info" />
+                                    <span class="tooltiptext">The data type that defines the new attribute</span>
+                                </div>
                                 <Field id="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
                                     {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
                                 </Field>
-                                <strong htmlFor={`propertyOptions.${index}.values`}>List of Values:</strong>
+
+                                <strong id="param" htmlFor={`propertyOptions.${index}.values`}>List of Values:</strong>
+                                <div class="tooltip">
+                                    <img src={infoImage} alt="info" />
+                                    <span class="tooltiptext">Numeric or alphatetic values that define the new attribute (separated by commas)</span>
+                                </div>
                                 <Field id="fieldLarge" name={`propertyOptions.${index}.values`} />
-                                <strong htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </strong>
+                                
+                                <strong id="param" htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </strong>
+                                <div class="tooltip">
+                                    <img src={infoImage} alt="info" />
+                                    <span class="tooltiptext">Example: min length of a line</span>
+                                </div>
                                 <Field id="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
-                                <strong htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </strong>
+                                
+                                <strong id="param" htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </strong>
+                                <div class="tooltip">
+                                    <img src={infoImage} alt="info" />
+                                    <span class="tooltiptext">Example: max number of points</span>
+                                </div>
                                 <Field id="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
                                 
                                 <div>
@@ -40,6 +65,5 @@ export const PropertiesEditor = () => {
                 </div>
             )}
         />
-
     )
 }
