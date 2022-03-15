@@ -7,6 +7,7 @@ import { PropertiesEditor } from '../app/AddProperties'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import infoImage from '../../assets/info.svg'
+import { errorHandling } from './ErrorHandling'
 
 
 export const AddLines = () => {
@@ -14,8 +15,10 @@ export const AddLines = () => {
     const dispatch = useDispatch();
 
     const submit = (values) => {
-        dispatch(addLine(values))
-        history.push('/')
+        if (errorHandling(values)) {
+            dispatch(addLine(values))
+            history.push('/')
+        }
     }
 
     const initValues = {

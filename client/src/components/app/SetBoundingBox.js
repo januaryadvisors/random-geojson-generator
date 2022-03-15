@@ -13,9 +13,9 @@ export const SetBoundingBox = () => {
 
     const submit = (values) => {
         if (values.minLng !== "" && values.maxLng !== "" && values.minLng > values.maxLng) {
-            toast.error("Error. Min Longitude cannot be larger than Max Longitude.")
+            toast.error("Min Longitude cannot be larger than Max Longitude.")
         } else if (values.minLat !== "" && values.maxLat !== "" && values.minLat > values.maxLat) {
-            toast.error("Error. Min Latitude cannot be larger than Max Latitude.")
+            toast.error("Min Latitude cannot be larger than Max Latitude.")
         } else {
             dispatch(setBBOX(values))
             history.push('/')

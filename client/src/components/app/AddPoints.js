@@ -6,6 +6,7 @@ import { addPoint } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import { errorHandling } from './ErrorHandling'
 import infoImage from '../../assets/info.svg'
 
 export const AddPoints = () => {
@@ -13,8 +14,11 @@ export const AddPoints = () => {
     const dispatch = useDispatch();
 
     const submit = (values) => {
-        dispatch(addPoint(values))
-        history.push('/')
+        console.log(values)
+        if (errorHandling(values)) {
+            dispatch(addPoint(values))
+            history.push('/')
+        }
     }
 
     const initValues = {
@@ -48,7 +52,9 @@ export const AddPoints = () => {
                 </div>
                 
                 <Field id="fieldSmall" name="num" type="number" />
+                
                 <PropertiesEditor />
+                
                 <button id="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
