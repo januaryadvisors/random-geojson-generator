@@ -4,8 +4,6 @@ import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addPoint } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
-import { Header } from './Header'
-import { Footer } from './Footer'
 
 export const AddPoints = () => {
     const history = useHistory();
@@ -31,7 +29,6 @@ export const AddPoints = () => {
     // need to add validation
     return (
         <>
-        <Header />
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -39,13 +36,12 @@ export const AddPoints = () => {
             onSubmit={submit}
         >
             <Form>
-                <strong htmlFor="num">Number of Features: </strong>
-                <Field id="fieldSmall" name="num" type="number" />
+                <label htmlFor="num">Number of Features: </label>
+                <Field class="fieldSmall" name="num" type="number" />
                 <PropertiesEditor />
-                <button id="greenButton" type="submit">Submit</button>
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
-        <Footer />
         </>
     )
 }

@@ -4,8 +4,6 @@ import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addPolygon } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
-import { Header } from './Header'
-import { Footer } from './Footer'
 
 export const AddPolygons = () => {
     const history = useHistory();
@@ -33,7 +31,6 @@ export const AddPolygons = () => {
     // need to add validation
     return (
         <>
-        <Header />
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -41,17 +38,16 @@ export const AddPolygons = () => {
             onSubmit={submit}
         >
             <Form>
-                <strong htmlFor="num">Number of Features: </strong>
-                <Field id="fieldSmall" name="num" type="number" />
-                <strong htmlFor="numVertices">Number of Vertices: </strong>
-                <Field id="fieldSmall" name="numVertices" type="number" />
-                <strong htmlFor="maxRadialLength">Max Radial Length: </strong>
-                <Field id="fieldSmall" name="maxRadialLength" type="number" />
+                <label htmlFor="num">Number of Features: </label>
+                <Field class="fieldSmall" name="num" type="number" />
+                <label htmlFor="numVertices">Number of Vertices: </label>
+                <Field class="fieldSmall" name="numVertices" type="number" />
+                <label htmlFor="maxRadialLength">Max Radial Length: </label>
+                <Field class="fieldSmall" name="maxRadialLength" type="number" />
                 <PropertiesEditor />
-                <button id="greenButton" type="submit">Submit</button>
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
-        <Footer />
         </>
     )
 }

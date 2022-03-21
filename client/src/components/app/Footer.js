@@ -2,25 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import { HEADER_HEIGHT, GREEN } from '../../constants/cssVars';
 
+// const FooterWrapper = styled.div`
+//     width: 100%;
+//     height: ${HEADER_HEIGHT}px;
+//     display: flex;
+//     top: 0;
+// `;
+
 const FooterWrapper = styled.div`
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    height: ${HEADER_HEIGHT}px;
-    color: ${GREEN};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0px;
-    left: 0px;
-    z-index: 10;
+    height: 2.5rem;  
 `;
 
 const FooterContent = styled.div`
-    margin: 0px 30px;
+    font-size: 18px;
+    color: ${GREEN};
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 18px;
 `;
 
 export const Footer = () => {

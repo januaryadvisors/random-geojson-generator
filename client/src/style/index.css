@@ -20,7 +20,8 @@ h1, h2, h3 {
   left: 7%;
 }
 
-strong {
+label {
+  font-weight: bold;
   margin-top: 2%;
   margin-bottom: 3%;
   position: relative;
@@ -53,46 +54,7 @@ button[disabled]{
   cursor: default;
 }
 
-#greenButton {
-  background-color: #04AA6D;
-  color: white;
-  font-weight: 500;
-  min-width: 250px;
-  border: 1px solid #04AA6D;
-  border-radius: 7px;
-  margin-top: 4%;
-  display: flex;
-  justify-content: center;
-}
-
-#generateButton {
-  background-color: #04AA6D;
-  color: white;
-  font-weight: 500;
-  min-width: 250px;
-  border: 1px solid #04AA6D;
-  border-radius: 7px;
-  margin-top: 4%;
-  margin-left: 1%;
-}
-
-#fieldSmall {
-  display: flex;
-  margin-bottom: 2%;
-  position: relative;
-  left: 7%;
-  width: 15%;
-}
-
-#fieldMedium {
-  display: flex;
-  margin-bottom: 2%;
-  position: relative;
-  left: 7%;
-  width: 25%;
-}
-
-#fieldLarge {
+textarea {
   display: flex;
   margin-bottom: 2%;
   position: relative;
@@ -108,10 +70,6 @@ button[disabled]{
   min-height: 70px;
   max-height: 300px;
   background-color: #FEFEFD;
-}
-
-#boundingBoxList {
-  margin-right: 7%;
 }
 
 table {
@@ -194,6 +152,49 @@ input[id*='react-select-'][id$='-input']:focus {
 
 input[type="file"] {
   display: none;
+}
+
+.greenButton {
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  margin-top: 4%;
+  display: flex;
+  justify-content: center;
+}
+
+.fieldSmall {
+  display: flex;
+  margin-bottom: 2%;
+  position: relative;
+  left: 7%;
+  width: 15%;
+}
+
+.fieldMedium {
+  display: flex;
+  margin-bottom: 2%;
+  position: relative;
+  left: 7%;
+  width: 25%;
+}
+
+.boundingBoxList {
+  margin-right: 7%;
+}
+
+#generateButton {
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  margin-top: 4%;
+  margin-left: 1%;
 }
 
 /* .Toastify__toast {

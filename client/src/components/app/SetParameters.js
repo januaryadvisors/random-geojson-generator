@@ -8,24 +8,22 @@ import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector
 import { generateGeoJSONQuery } from '../../actions/queries'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
-import { Header } from './Header'
-import { Footer } from './Footer'
 
 const SelectedBBOX = (props) => {
     return (
         <div>
             <h3>Bounding Box</h3>
             <div>
-                <strong id="boundingBoxList">Min Longitude: </strong>{props.selectedBBOX.minLng}
+                <label class="boundingBoxList">Min Longitude: </label>{props.selectedBBOX.minLng}
             </div>
             <div>
-                <strong id="boundingBoxList">Min Latitude: </strong>{props.selectedBBOX.minLat}
+                <label class="boundingBoxList">Min Latitude: </label>{props.selectedBBOX.minLat}
             </div>
             <div>
-                <strong id="boundingBoxList">Max Longitude: </strong>{props.selectedBBOX.maxLng}
+                <label class="boundingBoxList">Max Longitude: </label>{props.selectedBBOX.maxLng}
             </div>
             <div>
-                <strong id="boundingBoxList">Max Latitude: </strong>{props.selectedBBOX.maxLat}
+                <label class="boundingBoxList">Max Latitude: </label>{props.selectedBBOX.maxLat}
             </div>
         </div>
     )
@@ -203,9 +201,7 @@ export const SetParameters = () => {
     }
 
     return (
-        <>
-            <Header />
-            
+        <>  
             <SelectedBBOX selectedBBOX={selectedBBOX} />
             <button onClick={() => history.push('/set-bbox')}>Set Bounding Box</button>
 
@@ -221,8 +217,7 @@ export const SetParameters = () => {
             <div>
                 <button disabled={noDataEntered()} onClick={() => dispatch(clearStore())}>Reset</button>
                 <button id="generateButton" onClick={useGenerateGeoJSONQuery(selectedBBOX, selectedPoints, selectedLines, selectedPolygons)}>Generate GeoJSON</button>
-            </div>    
-            <Footer />
+            </div>
         </>
     )
 }

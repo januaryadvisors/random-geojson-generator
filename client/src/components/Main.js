@@ -7,17 +7,21 @@ import { SetBoundingBox } from './app/SetBoundingBox'
 import { AddPoints } from './app/AddPoints';
 import { AddLines } from './app/AddLines';
 import { AddPolygons } from './app/AddPolygons';
+import { Header } from './app/Header';
+import { Footer } from './app/Footer';
 
 const Wrapper = styled.div`
   background-color: white;
-  width: 100%;
+  position: relative;
+  min-height: 100vh;
 `;
 
 export const Main = () => {
   return (
     <Wrapper>
       <ToastContainer autoClose={3000} position="bottom-right" transition={Flip} hideProgressBar />
-      <main style={{height: `100vh`,}}>
+      <main style={{paddingBottom: `2.5rem`}}>
+        <Header />
         <Switch>
           <Route path="/" component={SetParameters} exact={true} />
           <Route path="/set-bbox" component={SetBoundingBox} />
@@ -26,6 +30,7 @@ export const Main = () => {
           <Route path="/add-polygons" component={AddPolygons} />
           <Redirect to="/" />
         </Switch>
+        <Footer />
       </main>
     </Wrapper>
   )
