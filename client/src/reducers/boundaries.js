@@ -1,4 +1,4 @@
-import { SET_BBOX } from '../actions/boundaries';
+import { SET_BBOX, DELETE_COORDINATE } from '../actions/boundaries';
 
 const defaultState = {
     minLng: '',
@@ -15,6 +15,11 @@ const boundariesReducer = (state = defaultState, action) => {
             minLat: action.payload.minLat,
             maxLng: action.payload.maxLng,
             maxLat: action.payload.maxLat,
+        }
+    case DELETE_COORDINATE:
+        return {
+            ...state,
+            [action.payload]: '',
         }
     default:
         return state;

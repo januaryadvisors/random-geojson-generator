@@ -10,22 +10,31 @@ import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import deleteIcon from '../../assets/trash.svg'
+import { deleteCoordinate } from '../../actions/boundaries';
 
 const SelectedBBOX = (props) => {
+    // need to find a way to update selectedBBOX coordinate
+    const dispatch = useDispatch();
+
     return (
         <div>
             <h3>Bounding Box</h3>
             <div>
                 <strong id="boundingBoxList">Min Longitude: </strong>{props.selectedBBOX.minLng}
+                <img class="delete-button" hidden={props.selectedBBOX.minLng === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("minLng"))} />
             </div>
             <div>
                 <strong id="boundingBoxList">Min Latitude: </strong>{props.selectedBBOX.minLat}
+                <img class="delete-button" hidden={props.selectedBBOX.minLat === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("minLat"))} />
             </div>
             <div>
                 <strong id="boundingBoxList">Max Longitude: </strong>{props.selectedBBOX.maxLng}
+                <img class="delete-button" hidden={props.selectedBBOX.maxLng === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("maxLng"))} />
             </div>
             <div>
                 <strong id="boundingBoxList">Max Latitude: </strong>{props.selectedBBOX.maxLat}
+                <img class="delete-button" hidden={props.selectedBBOX.maxLat === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("maxLat"))} />
             </div>
         </div>
     )
@@ -165,7 +174,9 @@ export const SetParameters = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const selectedBBOX = useSelector(boundariesSelector)
+    const selectedBBOX = useSelector(boundariesSelector);
+    // const state = useSelector(state => state);
+    // console.log(state);
     const selectedPoints = useSelector(selectedPointsSelector);
     const selectedLines = useSelector(selectedLinesSelector);
     const selectedPolygons = useSelector(selectedPolygonsSelector);
@@ -221,7 +232,8 @@ export const SetParameters = () => {
             <div>
                 <button disabled={noDataEntered()} onClick={() => dispatch(clearStore())}>Reset</button>
                 <button id="generateButton" onClick={useGenerateGeoJSONQuery(selectedBBOX, selectedPoints, selectedLines, selectedPolygons)}>Generate GeoJSON</button>
-            </div>    
+            </div>
+
             <Footer />
         </>
     )

@@ -12,7 +12,6 @@ export const errorHandling = (values) => {
         return false;
     } else {
         for (let [index, property] of values.propertyOptions.entries()) {
-            console.log(index);
             if (property.name === '') {
                 toast.error(`Feature #${index + 1} property name is empty`);
                 return false;

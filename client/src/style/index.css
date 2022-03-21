@@ -118,6 +118,11 @@ button[disabled]{
   margin-right: 7%;
 }
 
+.delete-button {
+  cursor: pointer;
+  margin-left: 0.25%;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
