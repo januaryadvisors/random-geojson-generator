@@ -17,15 +17,13 @@ h1, h2, h3 {
   font-family: 'Saira Extra Condensed', sans-serif;
   margin-top: 3%;
   position: relative;
-  left: 7%;
 }
 
 label {
   font-weight: bold;
-  margin-top: 2%;
-  margin-bottom: 3%;
+  margin-top: 20px;
+  margin-bottom: 30px;
   position: relative;
-  left: 7%;
 }
 
 button {
@@ -41,9 +39,8 @@ button {
   border: 1px solid #04AA6D;
   border-radius: 7px;
   position: relative;
-  left: 7%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 button:disabled,
@@ -56,9 +53,8 @@ button[disabled]{
 
 textarea {
   display: flex;
-  margin-bottom: 2%;
+  margin-bottom: 20px;
   position: relative;
-  left: 7%;
   width: 50%;
   box-sizing: border-box;
   padding: 8px 10px;
@@ -76,7 +72,6 @@ table {
   border-collapse: collapse;
   width: 85%;  
   position: relative;
-  left: 7%;
 }
 
 tr:hover {background-color: #ddd;}
@@ -128,13 +123,13 @@ p {
 
 p.error {
   font-size: 14px;
-  margin: 0px;
+  margin: 0;
   margin-top: 10px;
   color: #d9143a;
 }
 
 li {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 a {
@@ -161,29 +156,27 @@ input[type="file"] {
   min-width: 250px;
   border: 1px solid #04AA6D;
   border-radius: 7px;
-  margin-top: 4%;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
 }
 
 .fieldSmall {
   display: flex;
-  margin-bottom: 2%;
+  margin-bottom: 20px;
   position: relative;
-  left: 7%;
   width: 15%;
 }
 
 .fieldMedium {
   display: flex;
-  margin-bottom: 2%;
+  margin-bottom: 20px;
   position: relative;
-  left: 7%;
   width: 25%;
 }
 
 .boundingBoxList {
-  margin-right: 7%;
+  margin-right: 70px;
 }
 
 #generateButton {
@@ -193,8 +186,8 @@ input[type="file"] {
   min-width: 250px;
   border: 1px solid #04AA6D;
   border-radius: 7px;
-  margin-top: 4%;
-  margin-left: 1%;
+  margin-top: 40px;
+  margin-left: 10px;
 }
 
 /* .Toastify__toast {
