@@ -30,6 +30,7 @@ export const AddPolygons = () => {
 
     // need to add validation
     return (
+        <>
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -38,14 +39,15 @@ export const AddPolygons = () => {
         >
             <Form>
                 <label htmlFor="num">Number of Features: </label>
-                <Field name="num" type="number" />
+                <Field class="fieldSmall" name="num" type="number" />
                 <label htmlFor="numVertices">Number of Vertices: </label>
-                <Field name="numVertices" type="number" />
+                <Field class="fieldSmall" name="numVertices" type="number" />
                 <label htmlFor="maxRadialLength">Max Radial Length: </label>
-                <Field name="maxRadialLength" type="number" />
+                <Field class="fieldSmall" name="maxRadialLength" type="number" />
                 <PropertiesEditor />
-                <button type="submit">Submit</button>
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
+        </>
     )
 }

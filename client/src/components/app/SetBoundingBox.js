@@ -22,6 +22,7 @@ export const SetBoundingBox = () => {
 
     // need to add validation
     return (
+        <>
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -30,15 +31,16 @@ export const SetBoundingBox = () => {
         >
             <Form>
                 <label htmlFor="minLng">Min Longitude: </label>
-                <Field name="minLng" type="number" />
+                <Field class="fieldSmall" name="minLng" type="number" />
                 <label htmlFor="minLat">Min Latitude: </label>
-                <Field name="minLat" type="number" />
+                <Field class="fieldSmall" name="minLat" type="number" />
                 <label htmlFor="maxLng">Max Longitude: </label>
-                <Field name="maxLng" type="number" />
+                <Field class="fieldSmall" name="maxLng" type="number" />
                 <label htmlFor="maxLat">Max Latitude: </label>
-                <Field name="maxLat" type="number" />
-                <button type="submit">Submit</button>
+                <Field class="fieldSmall" name="maxLat" type="number" />
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
+        </>
     )
 }

@@ -28,6 +28,7 @@ export const AddPoints = () => {
 
     // need to add validation
     return (
+        <>
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -36,10 +37,11 @@ export const AddPoints = () => {
         >
             <Form>
                 <label htmlFor="num">Number of Features: </label>
-                <Field name="num" type="number" />
+                <Field class="fieldSmall" name="num" type="number" />
                 <PropertiesEditor />
-                <button type="submit">Submit</button>
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
+        </>
     )
 }

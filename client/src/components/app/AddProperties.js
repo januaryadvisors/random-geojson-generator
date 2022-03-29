@@ -4,7 +4,7 @@ import { propertyTypeOptions } from '../../constants/formOptions'
 
 export const PropertiesEditor = () => {
     // update
-    const { values, errors, touched, submitCount } = useFormikContext();
+    const { values } = useFormikContext(); // errors, touched, submitCount
     return (
         <FieldArray
             name="propertyOptions"
@@ -17,18 +17,18 @@ export const PropertiesEditor = () => {
                         return (
                             <>
                                 <label htmlFor={`propertyOptions.${index}.name`}>Property Name: </label>
-                                <Field name={`propertyOptions.${index}.name`} type="text" />
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
                                 <label htmlFor={`propertyOptions.${index}.type`}>Property Type: </label>
-                                <Field name={`propertyOptions.${index}.type`} as="select">
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
                                     {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
                                 </Field>
                                 <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
                                 <Field name={`propertyOptions.${index}.values`} as='textarea' />
                                 <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
-                                <Field name={`propertyOptions.${index}.min`} type="number" />
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
                                 <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
-                                <Field name={`propertyOptions.${index}.max`} type="number" />
-
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
+                                
                                 <div>
                                     <button type="button" onClick={removeOption}>Remove Property</button>
                                 </div>
