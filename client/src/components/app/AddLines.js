@@ -4,8 +4,6 @@ import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addLine } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
-import { Header } from './Header'
-import { Footer } from './Footer'
 import infoImage from '../../assets/info.svg'
 import { errorHandling } from './ErrorHandling'
 
@@ -39,7 +37,6 @@ export const AddLines = () => {
     // need to add validation
     return (
         <>
-        <Header />
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -47,38 +44,38 @@ export const AddLines = () => {
             onSubmit={submit}
         >
             <Form>
-                <strong id="param" htmlFor="num">Number of Features: </strong>
+                <label htmlFor="num">Number of Features: </label>
                 <div class="tooltip">
-                    <img src={infoImage} alt="info" />
+                    <img src={infoImage} alt="Number of Features Info Icon" />
                     <span class="tooltiptext">Number of lines to be included in the GeoJSON</span>
                 </div>
-                <Field id="fieldSmall" name="num" type="number" />
+                <Field class="fieldSmall" name="num" type="number" />
 
-                <strong id="param" htmlFor="numVertices">Number of Vertices: </strong>
+                <label htmlFor="numVertices">Number of Vertices: </label>
                 <div class="tooltip">
-                    <img src={infoImage} alt="info" />
+                    <img src={infoImage} alt="Number of Vertices Info Icon" />
                     <span class="tooltiptext">Number of coordinates each line will contain</span>
                 </div>
-                <Field id="fieldSmall" name="numVertices" type="number" />
+                <Field class="fieldSmall" name="numVertices" type="number" />
 
-                <strong id="param" htmlFor="maxSegmentLength">Max Segment Length: </strong>
+                <label htmlFor="maxSegmentLength">Max Segment Length: </label>
                 <div class="tooltip">
-                    <img src={infoImage} alt="info" />
+                    <img src={infoImage} alt="Max Segment Length Info Icon" />
                     <span class="tooltiptext">Max number of decimal degrees that a vertex can be from its predecessor</span>
                 </div>
-                <Field id="fieldSmall" name="maxSegmentLength" type="number" />
+                <Field class="fieldSmall" name="maxSegmentLength" type="number" />
 
-                <strong id="param" htmlFor="maxSegmentRotation">Max Segment Rotation: </strong>
+                <label htmlFor="maxSegmentRotation">Max Segment Rotation: </label>
                 <div class="tooltip">
-                    <img src={infoImage} alt="info" />
+                    <img src={infoImage} alt="Max Segment Rotation Info Icon" />
                     <span class="tooltiptext">Max number of radians that a line segment can turn from the previous segment</span>
                 </div>
-                <Field id="fieldSmall" name="maxSegmentRotation" type="number" />
+                <Field class="fieldSmall" name="maxSegmentRotation" type="number" />
+
                 <PropertiesEditor />
-                <button id="greenButton" type="submit">Submit</button>
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
-        <Footer />
         </>
     )
 }

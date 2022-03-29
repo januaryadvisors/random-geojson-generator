@@ -4,8 +4,6 @@ import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { addPoint } from '../../actions/features'
 import { PropertiesEditor } from '../app/AddProperties'
-import { Header } from './Header'
-import { Footer } from './Footer'
 import { errorHandling } from './ErrorHandling'
 import infoImage from '../../assets/info.svg'
 
@@ -14,7 +12,6 @@ export const AddPoints = () => {
     const dispatch = useDispatch();
 
     const submit = (values) => {
-        console.log(values)
         if (errorHandling(values)) {
             dispatch(addPoint(values))
             history.push('/')
@@ -36,7 +33,6 @@ export const AddPoints = () => {
     // need to add validation
     return (
         <>
-        <Header />
         <Formik
             // validate={validate}
             initialValues={initValues}
@@ -44,21 +40,17 @@ export const AddPoints = () => {
             onSubmit={submit}
         >
             <Form>
-                <strong id="param" htmlFor="num">Number of Features: </strong>
-                
+                <label htmlFor="num">Number of Features: </label>
                 <div class="tooltip">
-                    <img src={infoImage} alt="info" />
+                    <img src={infoImage} alt="Number of Features Info Icon" />
                     <span class="tooltiptext">Number of point to be added to the GeoJSON</span>
                 </div>
-                
-                <Field id="fieldSmall" name="num" type="number" />
-                
+                <Field class="fieldSmall" name="num" type="number" />
+
                 <PropertiesEditor />
-                
-                <button id="greenButton" type="submit">Submit</button>
+                <button class="greenButton" type="submit">Submit</button>
             </Form>
         </Formik>
-        <Footer />
         </>
     )
 }

@@ -8,33 +8,30 @@ import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector
 import { generateGeoJSONQuery } from '../../actions/queries'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
-import { Header } from './Header'
-import { Footer } from './Footer'
 import deleteIcon from '../../assets/trash.svg'
 import { deleteCoordinate } from '../../actions/boundaries';
 
 const SelectedBBOX = (props) => {
-    // need to find a way to update selectedBBOX coordinate
     const dispatch = useDispatch();
 
     return (
         <div>
             <h3>Bounding Box</h3>
             <div>
-                <strong id="boundingBoxList">Min Longitude: </strong>{props.selectedBBOX.minLng}
-                <img class="delete-button" hidden={props.selectedBBOX.minLng === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("minLng"))} />
+                <label class="boundingBoxList">Min Longitude: </label>{props.selectedBBOX.minLng}
+                <img hidden={!props.selectedBBOX.minLng} src={deleteIcon} alt="Min Longitude Delete Icon" onClick={() => dispatch(deleteCoordinate("minLng"))} />
             </div>
             <div>
-                <strong id="boundingBoxList">Min Latitude: </strong>{props.selectedBBOX.minLat}
-                <img class="delete-button" hidden={props.selectedBBOX.minLat === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("minLat"))} />
+                <label class="boundingBoxList">Min Latitude: </label>{props.selectedBBOX.minLat}
+                <img hidden={!props.selectedBBOX.minLat} src={deleteIcon} alt="Min Latitude Delete Icon" onClick={() => dispatch(deleteCoordinate("minLat"))} />
             </div>
             <div>
-                <strong id="boundingBoxList">Max Longitude: </strong>{props.selectedBBOX.maxLng}
-                <img class="delete-button" hidden={props.selectedBBOX.maxLng === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("maxLng"))} />
+                <label class="boundingBoxList">Max Longitude: </label>{props.selectedBBOX.maxLng}
+                <img hidden={!props.selectedBBOX.maxLng} src={deleteIcon} alt="Max Longitude Delete Icon" onClick={() => dispatch(deleteCoordinate("maxLng"))} />
             </div>
             <div>
-                <strong id="boundingBoxList">Max Latitude: </strong>{props.selectedBBOX.maxLat}
-                <img class="delete-button" hidden={props.selectedBBOX.maxLat === ""} src={deleteIcon} alt="delete-icon" onClick={() => dispatch(deleteCoordinate("maxLat"))} />
+                <label class="boundingBoxList">Max Latitude: </label>{props.selectedBBOX.maxLat}
+                <img hidden={!props.selectedBBOX.maxLat} src={deleteIcon} alt="Max Latitude Delete Icon" onClick={() => dispatch(deleteCoordinate("maxLat"))} />
             </div>
         </div>
     )
@@ -214,9 +211,7 @@ export const SetParameters = () => {
     }
 
     return (
-        <>
-            <Header />
-            
+        <>  
             <SelectedBBOX selectedBBOX={selectedBBOX} />
             <button onClick={() => history.push('/set-bbox')}>Set Bounding Box</button>
 
@@ -233,8 +228,6 @@ export const SetParameters = () => {
                 <button disabled={noDataEntered()} onClick={() => dispatch(clearStore())}>Reset</button>
                 <button id="generateButton" onClick={useGenerateGeoJSONQuery(selectedBBOX, selectedPoints, selectedLines, selectedPolygons)}>Generate GeoJSON</button>
             </div>
-
-            <Footer />
         </>
     )
 }

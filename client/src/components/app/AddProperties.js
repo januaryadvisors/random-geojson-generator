@@ -5,7 +5,7 @@ import infoImage from '../../assets/info.svg'
 
 export const PropertiesEditor = () => {
     // update
-    const { values, errors, touched, submitCount } = useFormikContext();
+    const { values } = useFormikContext(); // errors, touched, submitCount
     return (
         <FieldArray
             name="propertyOptions"
@@ -17,42 +17,42 @@ export const PropertiesEditor = () => {
                         }
                         return (
                             <>
-                                <strong id="param" htmlFor={`propertyOptions.${index}.name`}>Property Name: </strong>
+                                <label htmlFor={`propertyOptions.${index}.name`}>Property Name: </label>
                                 <div class="tooltip">
-                                    <img src={infoImage} alt="info" />
+                                    <img src={infoImage} alt="Property Name Info Icon" />
                                     <span class="tooltiptext">Name of the new attribute</span>
                                 </div>
-                                <Field id="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
 
-                                <strong id="param" htmlFor={`propertyOptions.${index}.type`}>Property Type: </strong>
+                                <label htmlFor={`propertyOptions.${index}.type`}>Property Type: </label>
                                 <div class="tooltip">
-                                    <img src={infoImage} alt="info" />
+                                    <img src={infoImage} alt="Property Type Info Icon" />
                                     <span class="tooltiptext">The data type that defines the new attribute</span>
                                 </div>
-                                <Field id="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
                                     {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
                                 </Field>
-
-                                <strong id="param" htmlFor={`propertyOptions.${index}.values`}>List of Values:</strong>
+                                
+                                <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
                                 <div class="tooltip">
-                                    <img src={infoImage} alt="info" />
+                                    <img src={infoImage} alt="List of Values Info Icon" />
                                     <span class="tooltiptext">Numeric or alphatetic values that define the new attribute (separated by commas)</span>
                                 </div>
-                                <Field id="fieldLarge" name={`propertyOptions.${index}.values`} />
+                                <Field name={`propertyOptions.${index}.values`} as='textarea' />
                                 
-                                <strong id="param" htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </strong>
+                                <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
                                 <div class="tooltip">
-                                    <img src={infoImage} alt="info" />
+                                    <img src={infoImage} alt="Min Info Icon" />
                                     <span class="tooltiptext">Example: min length of a line</span>
                                 </div>
-                                <Field id="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
                                 
-                                <strong id="param" htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </strong>
+                                <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
                                 <div class="tooltip">
-                                    <img src={infoImage} alt="info" />
+                                    <img src={infoImage} alt="Max Info Icon" />
                                     <span class="tooltiptext">Example: max number of points</span>
                                 </div>
-                                <Field id="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
+                                <Field class="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
                                 
                                 <div>
                                     <button type="button" onClick={removeOption}>Remove Property</button>

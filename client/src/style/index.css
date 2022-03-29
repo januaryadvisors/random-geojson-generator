@@ -17,18 +17,13 @@ h1, h2, h3 {
   font-family: 'Saira Extra Condensed', sans-serif;
   margin-top: 3%;
   position: relative;
-  left: 7%;
 }
 
-strong {
-  margin-top: 2%;
-  margin-bottom: 3%;
+label {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 30px;
   position: relative;
-  left: 7%;
-}
-
-#param {
-  margin-right: 7%;
 }
 
 button {
@@ -44,9 +39,8 @@ button {
   border: 1px solid #04AA6D;
   border-radius: 7px;
   position: relative;
-  left: 7%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 button:disabled,
@@ -57,50 +51,10 @@ button[disabled]{
   cursor: default;
 }
 
-#greenButton {
-  background-color: #04AA6D;
-  color: white;
-  font-weight: 500;
-  min-width: 250px;
-  border: 1px solid #04AA6D;
-  border-radius: 7px;
-  margin-top: 4%;
+textarea {
   display: flex;
-  justify-content: center;
-}
-
-#generateButton {
-  background-color: #04AA6D;
-  color: white;
-  font-weight: 500;
-  min-width: 250px;
-  border: 1px solid #04AA6D;
-  border-radius: 7px;
-  margin-top: 4%;
-  margin-left: 1%;
-}
-
-#fieldSmall {
-  display: flex;
-  margin-bottom: 2%;
+  margin-bottom: 20px;
   position: relative;
-  left: 7%;
-  width: 15%;
-}
-
-#fieldMedium {
-  display: flex;
-  margin-bottom: 2%;
-  position: relative;
-  left: 7%;
-  width: 25%;
-}
-
-#fieldLarge {
-  display: flex;
-  margin-bottom: 2%;
-  position: relative;
-  left: 7%;
   width: 50%;
   box-sizing: border-box;
   padding: 8px 10px;
@@ -114,48 +68,13 @@ button[disabled]{
   background-color: #FEFEFD;
 }
 
-#boundingBoxList {
-  margin-right: 7%;
-}
-
-.delete-button {
-  cursor: pointer;
-  margin-left: 0.25%;
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: help;
-}
-
-.tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  margin-left: 50%;
-  z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
 table {
   border-collapse: collapse;
-  width: 85%;  
+  width: 100%;  
   position: relative;
-  left: 7%;
 }
 
-tr:hover {
-  background-color: #ddd;
-}
+tr:hover {background-color: #ddd;}
 
 th {
   padding-top: 12px;
@@ -204,13 +123,13 @@ p {
 
 p.error {
   font-size: 14px;
-  margin: 0px;
+  margin: 0;
   margin-top: 10px;
   color: #d9143a;
 }
 
 li {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 a {
@@ -228,6 +147,71 @@ input[id*='react-select-'][id$='-input']:focus {
 
 input[type="file"] {
   display: none;
+}
+
+.greenButton {
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.fieldSmall {
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+  width: 15%;
+}
+
+.fieldMedium {
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+  width: 25%;
+}
+
+.boundingBoxList {
+  margin-right: 5px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  margin-left: 5px;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  margin-left: 10px;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#generateButton {
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #04AA6D;
+  border-radius: 7px;
+  margin-top: 40px;
+  margin-left: 10px;
 }
 
 /* .Toastify__toast {
@@ -293,6 +277,7 @@ input[type="file"] {
   font-size: 12px !important;
   opacity: 1;
 }
+
 .recharts-yAxis {
   transition: 0.2s ease all;
   font-size: 12px !important;
