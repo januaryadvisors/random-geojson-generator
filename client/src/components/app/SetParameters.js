@@ -8,22 +8,30 @@ import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector
 import { generateGeoJSONQuery } from '../../actions/queries'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
+import deleteIcon from '../../assets/trash.svg'
+import { deleteCoordinate } from '../../actions/boundaries';
 
 const SelectedBBOX = (props) => {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <h3>Bounding Box</h3>
             <div>
                 <label class="boundingBoxList">Min Longitude: </label>{props.selectedBBOX.minLng}
+                <img hidden={!props.selectedBBOX.minLng} src={deleteIcon} alt="Min Longitude Delete Icon" onClick={() => dispatch(deleteCoordinate("minLng"))} />
             </div>
             <div>
                 <label class="boundingBoxList">Min Latitude: </label>{props.selectedBBOX.minLat}
+                <img hidden={!props.selectedBBOX.minLat} src={deleteIcon} alt="Min Latitude Delete Icon" onClick={() => dispatch(deleteCoordinate("minLat"))} />
             </div>
             <div>
                 <label class="boundingBoxList">Max Longitude: </label>{props.selectedBBOX.maxLng}
+                <img hidden={!props.selectedBBOX.maxLng} src={deleteIcon} alt="Max Longitude Delete Icon" onClick={() => dispatch(deleteCoordinate("maxLng"))} />
             </div>
             <div>
                 <label class="boundingBoxList">Max Latitude: </label>{props.selectedBBOX.maxLat}
+                <img hidden={!props.selectedBBOX.maxLat} src={deleteIcon} alt="Max Latitude Delete Icon" onClick={() => dispatch(deleteCoordinate("maxLat"))} />
             </div>
         </div>
     )
@@ -163,7 +171,9 @@ export const SetParameters = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const selectedBBOX = useSelector(boundariesSelector)
+    const selectedBBOX = useSelector(boundariesSelector);
+    // const state = useSelector(state => state);
+    // console.log(state);
     const selectedPoints = useSelector(selectedPointsSelector);
     const selectedLines = useSelector(selectedLinesSelector);
     const selectedPolygons = useSelector(selectedPolygonsSelector);

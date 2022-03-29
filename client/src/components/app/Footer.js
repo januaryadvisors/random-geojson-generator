@@ -1,13 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HEADER_HEIGHT, GREEN } from '../../constants/cssVars';
-
-// const FooterWrapper = styled.div`
-//     width: 100%;
-//     height: ${HEADER_HEIGHT}px;
-//     display: flex;
-//     top: 0;
-// `;
+import { GREEN } from '../../constants/cssVars';
 
 const FooterWrapper = styled.div`
     position: absolute;
