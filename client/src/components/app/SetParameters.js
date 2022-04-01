@@ -8,6 +8,8 @@ import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector
 import { generateGeoJSONQuery } from '../../actions/queries'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
+import deleteIcon from '../../assets/trash.svg'
+import { deletePoint, deleteLine, deletePolygon } from '../../actions/features';
 
 const SelectedBBOX = (props) => {
     return (
@@ -30,6 +32,8 @@ const SelectedBBOX = (props) => {
 }
 
 const SelectedPointsTable = (props) => {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <h3>Selected Points</h3>
@@ -59,6 +63,7 @@ const SelectedPointsTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
+                                <img src={deleteIcon} alt="Point Delete Icon" onClick={() => dispatch(deletePoint(i, n))}/>
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -70,6 +75,8 @@ const SelectedPointsTable = (props) => {
 }
 
 const SelectedLinesTable = (props) => {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <h3>Selected Lines</h3>
@@ -105,6 +112,7 @@ const SelectedLinesTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
+                                <img src={deleteIcon} alt="Line Delete Icon" onClick={() => dispatch(deleteLine(i, n))}/>
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -116,6 +124,8 @@ const SelectedLinesTable = (props) => {
 }
 
 const SelectedPolygonsTable = (props) => {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <h3>Selected Polygons</h3>
@@ -149,6 +159,7 @@ const SelectedPolygonsTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
+                                <img src={deleteIcon} alt="Polygon Delete Icon" onClick={() => dispatch(deletePolygon(i, n))}/>
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -163,7 +174,11 @@ export const SetParameters = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const selectedBBOX = useSelector(boundariesSelector)
+    const selectedBBOX = useSelector(boundariesSelector);
+
+    const state = useSelector(state => state);
+    console.log(state);
+
     const selectedPoints = useSelector(selectedPointsSelector);
     const selectedLines = useSelector(selectedLinesSelector);
     const selectedPolygons = useSelector(selectedPolygonsSelector);
