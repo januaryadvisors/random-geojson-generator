@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { mutateAsync } from "redux-query";
@@ -8,6 +8,8 @@ import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector
 import { generateGeoJSONQuery } from '../../actions/queries'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
+import editIcon from '../../assets/pencil.svg'
+import { useEffect } from 'react';
 
 const SelectedBBOX = (props) => {
     return (
@@ -30,6 +32,8 @@ const SelectedBBOX = (props) => {
 }
 
 const SelectedPointsTable = (props) => {
+    const history = useHistory();
+    
     return (
         <div>
             <h3>Selected Points</h3>
@@ -59,6 +63,7 @@ const SelectedPointsTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
+                                <img src={editIcon} alt="Edit Row" onClick={() => history.push('/edit-point')} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -168,6 +173,16 @@ export const SetParameters = () => {
     const selectedLines = useSelector(selectedLinesSelector);
     const selectedPolygons = useSelector(selectedPolygonsSelector);
 
+    const [bboxText, setbboxText] = useState("Set Bounding Box");
+
+    useEffect(() => {
+        if (selectedBBOX.maxLat === "" && selectedBBOX.maxLng === "" && selectedBBOX.minLat === "" && selectedBBOX.minLng === "") {
+            setbboxText("Set Bounding Box");
+        } else {
+            setbboxText("Edit Bounding Box");
+        };
+    }, [selectedBBOX.maxLat, selectedBBOX.maxLng, selectedBBOX.minLat, selectedBBOX.minLng]);
+
     const noDataEntered = () => {
         return selectedBBOX.maxLat === "" && selectedBBOX.maxLng === "" && selectedBBOX.minLat === "" && selectedBBOX.minLng === "" && selectedPoints.length === 0 && selectedLines.length === 0 && selectedPolygons.length === 0
     }
@@ -202,8 +217,9 @@ export const SetParameters = () => {
 
     return (
         <>  
+            {/* {emptyBBOX()} */}
             <SelectedBBOX selectedBBOX={selectedBBOX} />
-            <button onClick={() => history.push('/set-bbox')}>Set Bounding Box</button>
+            <button onClick={() => history.push('/set-bbox')}>{bboxText}</button>
 
             <SelectedPointsTable selectedPoints={selectedPoints} />
             <button onClick={() => history.push('/add-points')}>Add Points</button>

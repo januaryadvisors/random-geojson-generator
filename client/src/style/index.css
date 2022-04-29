@@ -51,6 +51,10 @@ button[disabled]{
   cursor: default;
 }
 
+img {
+  cursor: pointer;
+}
+
 textarea {
   display: flex;
   margin-bottom: 20px;
@@ -74,7 +78,7 @@ table {
   position: relative;
 }
 
-tr:hover {background-color: #ddd;}
+/* tr:hover {background-color: #ddd;} */
 
 th {
   padding-top: 12px;

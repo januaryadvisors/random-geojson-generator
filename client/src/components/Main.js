@@ -7,6 +7,9 @@ import { SetBoundingBox } from './app/SetBoundingBox'
 import { AddPoints } from './app/AddPoints';
 import { AddLines } from './app/AddLines';
 import { AddPolygons } from './app/AddPolygons';
+import { EditPoint } from './app/EditPoint';
+import { EditLine } from './app/EditLine';
+import { EditPolygon } from './app/EditPolygon';
 import { Header } from './app/Header';
 import { Footer } from './app/Footer';
 
@@ -36,6 +39,9 @@ export const Main = () => {
           <Route path="/add-points" component={AddPoints} />
           <Route path="/add-lines" component={AddLines} />
           <Route path="/add-polygons" component={AddPolygons} />
+          <Route path="/edit-point" component={EditPoint} />
+          <Route path="/edit-line" component={EditLine} />
+          <Route path="/edit-polygon" component={EditPolygon} />
           <Redirect to="/" />
         </Switch>
         </LeftMargin>
