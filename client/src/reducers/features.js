@@ -42,7 +42,7 @@ const featuresReducer = (state = defaultState, action) => {
     case EDIT_LINE:
       const newLines = [...state.lines];
       newLines[action.index].numVertices = action.properties.numVertices;
-      newLines[action.index].maxRadialLength = action.properties.maxRadialLength;
+      newLines[action.index].maxSegmentLength = action.properties.maxSegmentLength;
       newLines[action.index].maxSegmentRotation = action.properties.maxSegmentRotation;
       newLines[action.index].propertyOptions[action.subIndex].name = action.properties.name;
       newLines[action.index].propertyOptions[action.subIndex].type = action.properties.type;

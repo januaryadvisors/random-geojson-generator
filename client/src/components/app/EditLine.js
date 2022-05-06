@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { propertyTypeOptions } from '../../constants/formOptions'
 import { useDispatch, useSelector } from 'react-redux';
-import { editPolygon } from '../../actions/features';
+import { editLine } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
 
 export const EditLine = () => {
@@ -12,19 +12,22 @@ export const EditLine = () => {
     
     // get index/subIndex from dispatch state
     const [index, subIndex] = [state.features.index, state.features.subIndex];
-    // get polygon from dispatch state
-    const currentNumVertices = state.features.polygons[index].numVertices;
-    const currentMaxRadialLength = state.features.polygons[index].maxRadialLength;
-    const currentProperties = state.features.polygons[index].propertyOptions[subIndex];
+    
+    // get lines from dispatch state
+    const currentNumVertices = state.features.lines[index].numVertices;
+    const currentMaxSegmentLength = state.features.lines[index].maxSegmentLength;
+    const currentMaxSegmentRotation = state.features.lines[index].maxSegmentRotation;
+    const currentProperties = state.features.lines[index].propertyOptions[subIndex];
 
     const submit = (values) => {
-        dispatch(editPolygon(index, subIndex, values));
+        dispatch(editLine(index, subIndex, values));
         history.push('/');
     }
 
     const properties = {
         numVertices: currentNumVertices,
-        maxRadialLength: currentMaxRadialLength,
+        maxSegmentLength: currentMaxSegmentLength,
+        maxSegmentRotation: currentMaxSegmentRotation,
         name: currentProperties.name,
         type: currentProperties.type,
         values: currentProperties.values,
@@ -39,8 +42,11 @@ export const EditLine = () => {
                     <label htmlFor="numVertices"># of Vertices: </label>
                     <Field class="fieldSmall" name="numVertices" type="text" />
                     
-                    <label htmlFor="maxRadialLength">Max Radial Length: </label>
-                    <Field class="fieldSmall" name="maxRadialLength" type="text" />
+                    <label htmlFor="maxSegmentLength">Max Segment Length: </label>
+                    <Field class="fieldSmall" name="maxSegmentLength" type="text" />
+
+                    <label htmlFor="maxSegmentRotation">Max Segment Rotation: </label>
+                    <Field class="fieldSmall" name="maxSegmentRotation" type="text" />
 
                     <label htmlFor="name">Property Name: </label>
                     <Field class="fieldMedium" name="name" type="text" />
