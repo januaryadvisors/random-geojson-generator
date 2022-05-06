@@ -1,9 +1,11 @@
-import { ADD_POINT, ADD_LINE, ADD_POLYGON, SET_INDICES, EDIT_POINT } from '../actions/features';
+import { ADD_POINT, ADD_LINE, ADD_POLYGON, SET_INDICES, EDIT_POINT, EDIT_LINE, EDIT_POLYGON } from '../actions/features';
 
 const defaultState = {
   points: [],
   lines: [],
   polygons: [],
+  index: null,
+  subIndex: null,
 }
 
 const featuresReducer = (state = defaultState, action) => {
@@ -31,28 +33,39 @@ const featuresReducer = (state = defaultState, action) => {
           subIndex: action.subIndex
         }
     case EDIT_POINT:
-        // find which point it is
-        // edit the properties
-        return {
+        const newPoints = [...state.points];
+        newPoints[action.index].propertyOptions[action.subIndex] = action.properties;
+        return { 
           ...state,
-          points: state.points.map((point, index) => {
-            if (index === action.index) {
-              return {
-                ...point,
-                properties: point.properties.map((property, subIndex) => {
-                  if (subIndex === action.subIndex) {
-                    return {
-                      ...property,
-                      value: action.value
-                    }
-                  }
-                  return property
-                })
-              }
-            }
-            return point
-          })
+          points: newPoints
         }
+    case EDIT_LINE:
+      const newLines = [...state.lines];
+      newLines[action.index].numVertices = action.properties.numVertices;
+      newLines[action.index].maxRadialLength = action.properties.maxRadialLength;
+      newLines[action.index].maxSegmentRotation = action.properties.maxSegmentRotation;
+      newLines[action.index].propertyOptions[action.subIndex].name = action.properties.name;
+      newLines[action.index].propertyOptions[action.subIndex].type = action.properties.type;
+      newLines[action.index].propertyOptions[action.subIndex].values = action.properties.values;
+      newLines[action.index].propertyOptions[action.subIndex].min = action.properties.min;
+      newLines[action.index].propertyOptions[action.subIndex].max = action.properties.max;
+      return {
+        ...state,
+        line: newLines
+      }
+    case EDIT_POLYGON:
+      const newPolygons = [...state.polygons];
+      newPolygons[action.index].numVertices = action.properties.numVertices;
+      newPolygons[action.index].maxRadialLength = action.properties.maxRadialLength;
+      newPolygons[action.index].propertyOptions[action.subIndex].name = action.properties.name;
+      newPolygons[action.index].propertyOptions[action.subIndex].type = action.properties.type;
+      newPolygons[action.index].propertyOptions[action.subIndex].values = action.properties.values;
+      newPolygons[action.index].propertyOptions[action.subIndex].min = action.properties.min;
+      newPolygons[action.index].propertyOptions[action.subIndex].max = action.properties.max;
+      return {
+        ...state,
+        polygons: newPolygons
+      }
     default:
         return state;
   }

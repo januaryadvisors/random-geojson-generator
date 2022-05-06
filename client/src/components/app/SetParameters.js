@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { mutateAsync } from "redux-query";
@@ -10,7 +10,6 @@ import { setIndices } from '../../actions/features'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
 import editIcon from '../../assets/pencil.svg'
-import { useEffect } from 'react';
 
 const SelectedBBOX = (props) => {
     return (
@@ -83,6 +82,12 @@ const SelectedPointsTable = (props) => {
 
 const SelectedLinesTable = (props) => {
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const editLine = (i, n) => {
+        dispatch(setIndices(i, n));
+        history.push('/edit-line');
+    }
 
     return (
         <div>
@@ -119,7 +124,7 @@ const SelectedLinesTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
-                                <img src={editIcon} alt="Edit Line" onClick={() => history.push('/edit-line')} />
+                                <img src={editIcon} alt="Edit Line" onClick={() => editLine(i, n)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -132,6 +137,12 @@ const SelectedLinesTable = (props) => {
 
 const SelectedPolygonsTable = (props) => {
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const editPolygon = (i, n) => {
+        dispatch(setIndices(i, n));
+        history.push('/edit-polygon');
+    }
 
     return (
         <div>
@@ -166,7 +177,7 @@ const SelectedPolygonsTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
-                                <img src={editIcon} alt="Edit Polygon" onClick={() => history.push('/edit-polygon')} />
+                                <img src={editIcon} alt="Edit Polygon" onClick={() => editPolygon(i, n)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
