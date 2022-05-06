@@ -25,7 +25,6 @@ const featuresReducer = (state = defaultState, action) => {
           ...state,
           polygons: [...state.polygons, action.payload]
         }
-
     case SET_INDICES:
         return {
           ...state,
@@ -40,32 +39,32 @@ const featuresReducer = (state = defaultState, action) => {
           points: newPoints
         }
     case EDIT_LINE:
-      const newLines = [...state.lines];
-      newLines[action.index].numVertices = action.properties.numVertices;
-      newLines[action.index].maxSegmentLength = action.properties.maxSegmentLength;
-      newLines[action.index].maxSegmentRotation = action.properties.maxSegmentRotation;
-      newLines[action.index].propertyOptions[action.subIndex].name = action.properties.name;
-      newLines[action.index].propertyOptions[action.subIndex].type = action.properties.type;
-      newLines[action.index].propertyOptions[action.subIndex].values = action.properties.values;
-      newLines[action.index].propertyOptions[action.subIndex].min = action.properties.min;
-      newLines[action.index].propertyOptions[action.subIndex].max = action.properties.max;
-      return {
-        ...state,
-        line: newLines
-      }
+        const newLines = [...state.lines];
+        newLines[action.index].numVertices = action.properties.numVertices;
+        newLines[action.index].maxSegmentLength = action.properties.maxSegmentLength;
+        newLines[action.index].maxSegmentRotation = action.properties.maxSegmentRotation;
+        newLines[action.index].propertyOptions[action.subIndex].name = action.properties.name;
+        newLines[action.index].propertyOptions[action.subIndex].type = action.properties.type;
+        newLines[action.index].propertyOptions[action.subIndex].values = action.properties.values;
+        newLines[action.index].propertyOptions[action.subIndex].min = action.properties.min;
+        newLines[action.index].propertyOptions[action.subIndex].max = action.properties.max;
+        return {
+          ...state,
+          line: newLines
+        }
     case EDIT_POLYGON:
-      const newPolygons = [...state.polygons];
-      newPolygons[action.index].numVertices = action.properties.numVertices;
-      newPolygons[action.index].maxRadialLength = action.properties.maxRadialLength;
-      newPolygons[action.index].propertyOptions[action.subIndex].name = action.properties.name;
-      newPolygons[action.index].propertyOptions[action.subIndex].type = action.properties.type;
-      newPolygons[action.index].propertyOptions[action.subIndex].values = action.properties.values;
-      newPolygons[action.index].propertyOptions[action.subIndex].min = action.properties.min;
-      newPolygons[action.index].propertyOptions[action.subIndex].max = action.properties.max;
-      return {
-        ...state,
-        polygons: newPolygons
-      }
+        const newPolygons = [...state.polygons];
+        newPolygons[action.index].numVertices = action.properties.numVertices;
+        newPolygons[action.index].maxRadialLength = action.properties.maxRadialLength;
+        newPolygons[action.index].propertyOptions[action.subIndex].name = action.properties.name;
+        newPolygons[action.index].propertyOptions[action.subIndex].type = action.properties.type;
+        newPolygons[action.index].propertyOptions[action.subIndex].values = action.properties.values;
+        newPolygons[action.index].propertyOptions[action.subIndex].min = action.properties.min;
+        newPolygons[action.index].propertyOptions[action.subIndex].max = action.properties.max;
+        return {
+          ...state,
+          polygons: newPolygons
+        }
     default:
         return state;
   }
