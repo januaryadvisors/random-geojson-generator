@@ -22,13 +22,19 @@ export const PropertiesEditor = () => {
                                 <Field class="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
                                     {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
                                 </Field>
-                                <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
-                                <Field name={`propertyOptions.${index}.values`} as='textarea' />
-                                <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
-                                <Field class="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
-                                <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
-                                <Field class="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
-                                
+                                {['string_from_set', 'number_from_set'].includes(values.propertyOptions[index].type) ? (
+                                    <>
+                                        <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
+                                        <Field name={`propertyOptions.${index}.values`} as='textarea' />
+                                    </>
+                                ) : (
+                                    <>
+                                        <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
+                                        <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
+                                    </>
+                                )}                                
                                 <div>
                                     <button type="button" onClick={removeOption}>Remove Property</button>
                                 </div>
@@ -36,7 +42,7 @@ export const PropertiesEditor = () => {
                         );
                         })
                     }
-                    <button type="button" onClick={() => arrayHelpers.push({name: "", type: "", values: "", min: "", max: ""})}>Add Property</button>
+                    <button type="button" onClick={() => arrayHelpers.push({name: "", type: "string_from_set", values: "", min: "", max: ""})}>Add Property</button>
                 </div>
             )}
         />

@@ -21,7 +21,7 @@ export const AddPolygons = () => {
         maxRadialLength: '',
         propertyOptions: [{
             name: '',
-            type: '',
+            type: 'string_from_set',
             values: '',
             min: '',
             max: '',

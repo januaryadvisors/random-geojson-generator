@@ -19,7 +19,7 @@ export const AddPoints = () => {
         num: '',
         propertyOptions: [{
             name: '',
-            type: '',
+            type: 'string_from_set',
             values: '',
             min: '',
             max: '',
