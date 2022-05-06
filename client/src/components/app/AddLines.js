@@ -22,7 +22,7 @@ export const AddLines = () => {
         maxSegmentRotation: '',
         propertyOptions: [{
             name: '',
-            type: '',
+            type: 'string_from_set',
             values: '',
             min: '',
             max: '',
