@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { setBBOX } from '../../actions/boundaries'
@@ -7,6 +7,9 @@ import { setBBOX } from '../../actions/boundaries'
 export const SetBoundingBox = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const state = useSelector(state => state);
+
+    const currentBBOX = state.boundaries;
 
     const submit = (values) => {
         dispatch(setBBOX(values))
@@ -14,10 +17,10 @@ export const SetBoundingBox = () => {
     }
 
     const initValues = {
-        minLng: '',
-        minLat: '',
-        maxLng: '',
-        maxLat: '',
+        minLng: currentBBOX.minLng,
+        minLat: currentBBOX.minLat,
+        maxLng: currentBBOX.maxLng,
+        maxLat: currentBBOX.maxLat,
     }
 
     // need to add validation
