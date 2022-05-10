@@ -1,4 +1,12 @@
-import { ADD_POINT, ADD_LINE, ADD_POLYGON, SET_INDICES, EDIT_POINT, EDIT_LINE, EDIT_POLYGON } from '../actions/features';
+import { 
+  ADD_POINT, 
+  ADD_LINE, 
+  ADD_POLYGON, 
+  SET_INDEX, 
+  EDIT_POINT,
+  DELETE_PROPERTIES,
+  ADD_PROPERTIES
+} from '../actions/features';
 
 const defaultState = {
   points: [],
@@ -25,45 +33,32 @@ const featuresReducer = (state = defaultState, action) => {
           ...state,
           polygons: [...state.polygons, action.payload]
         }
-    case SET_INDICES:
+    case SET_INDEX:
         return {
           ...state,
-          index: action.index,
-          subIndex: action.subIndex
+          index: action.index
         }
     case EDIT_POINT:
-        const newPoints = [...state.points];
-        newPoints[action.index].propertyOptions[action.subIndex] = action.properties;
+        const editedPoints = [...state.points];
+        editedPoints[action.index] = action.properties;
         return { 
           ...state,
-          points: newPoints
+          points: editedPoints
         }
-    case EDIT_LINE:
-        const newLines = [...state.lines];
-        newLines[action.index].numVertices = action.properties.numVertices;
-        newLines[action.index].maxSegmentLength = action.properties.maxSegmentLength;
-        newLines[action.index].maxSegmentRotation = action.properties.maxSegmentRotation;
-        newLines[action.index].propertyOptions[action.subIndex].name = action.properties.name;
-        newLines[action.index].propertyOptions[action.subIndex].type = action.properties.type;
-        newLines[action.index].propertyOptions[action.subIndex].values = action.properties.values;
-        newLines[action.index].propertyOptions[action.subIndex].min = action.properties.min;
-        newLines[action.index].propertyOptions[action.subIndex].max = action.properties.max;
+    case DELETE_PROPERTIES:
+        const deletedPropertiesPoints = [...state.points];
+        console.log(deletedPropertiesPoints[action.index].propertyOptions)
+        deletedPropertiesPoints[action.index].propertyOptions.splice(action.subIndex, 1);
         return {
           ...state,
-          line: newLines
+          points: deletedPropertiesPoints
         }
-    case EDIT_POLYGON:
-        const newPolygons = [...state.polygons];
-        newPolygons[action.index].numVertices = action.properties.numVertices;
-        newPolygons[action.index].maxRadialLength = action.properties.maxRadialLength;
-        newPolygons[action.index].propertyOptions[action.subIndex].name = action.properties.name;
-        newPolygons[action.index].propertyOptions[action.subIndex].type = action.properties.type;
-        newPolygons[action.index].propertyOptions[action.subIndex].values = action.properties.values;
-        newPolygons[action.index].propertyOptions[action.subIndex].min = action.properties.min;
-        newPolygons[action.index].propertyOptions[action.subIndex].max = action.properties.max;
+    case ADD_PROPERTIES:
+        const addedPropertiesPoints = [...state.points];
+        addedPropertiesPoints[action.index].propertyOptions.push({ name: '', type: '', values: '', min: '', max: '' });
         return {
           ...state,
-          polygons: newPolygons
+          points: addedPropertiesPoints
         }
     default:
         return state;

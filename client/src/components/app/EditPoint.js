@@ -1,55 +1,70 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { propertyTypeOptions } from '../../constants/formOptions'
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { editPoint } from '../../actions/features';
+import { deleteProperties, addProperties, editPoint } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
+import { propertyTypeOptions } from '../../constants/formOptions';
 
 export const EditPoint = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const state = useSelector(state => state);
+
+    // get index of current point
+    const indexPoint = state.features.index;
     
-    // get index/subIndex from dispatch state
-    const [index, subIndex] = [state.features.index, state.features.subIndex];
-    
-    // get point from dispatch state
-    const currentProperty = state.features.points[index].propertyOptions[subIndex];
+    // get current point
+    const currentPoint = state.features.points[indexPoint];
 
     const submit = (values) => {
-        dispatch(editPoint(index, subIndex, values));
+        dispatch(editPoint(indexPoint, values));
         history.push('/');
-    }
-
-    const properties = {
-        name: currentProperty.name,
-        type: currentProperty.type,
-        values: currentProperty.values,
-        min: currentProperty.min,
-        max: currentProperty.max,
     }
 
     return (   
         <>    
-            <Formik initialValues={properties} onSubmit={submit}>
+            <Formik initialValues={currentPoint} onSubmit={submit}>
                 <Form>
-                    <label htmlFor="name">Property Name: </label>
-                    <Field class="fieldMedium" name="name" type="text" />
+                    <label htmlFor="num">Number of Features:</label>
+                    <Field class="fieldSmall" name="num" type="number" />
 
-                    <label htmlFor="type">Property Type: </label>
-                    <Field class="fieldMedium" name="type" as="select">
-                        {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
-                    </Field>
+                    <FieldArray name="propertyOptions" render={() => (
+                        <div>
+                            {currentPoint.propertyOptions.map((item, index) => {
+                                const removeOption = () => { 
+                                    dispatch(deleteProperties(indexPoint, index));
+                                    console.log(currentPoint)
+                                }
+                                return (
+                                    <>
+                                        <label htmlFor={`propertyOptions.${index}.name`}>Property Name: </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
+                                        
+                                        <label htmlFor={`propertyOptions.${index}.type`}>Property Type: </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
+                                            {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
+                                        </Field>
 
-                    <label htmlFor="values">List of Values:</label>
-                    <Field name="values" as='textarea' />
+                                        <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
+                                        <Field name={`propertyOptions.${index}.values`} as='textarea' />
+                                        
+                                        <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
+                                        
+                                        <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
 
-                    <label htmlFor="min">Min (length, words, #, etc): </label>
-                    <Field class="fieldMedium" name="min" type="number" />
-
-                    <label htmlFor="max">Max (length, words, #, etc): </label>
-                    <Field class="fieldMedium" name="max" type="number" />
-
+                                        <div>
+                                            <button type="button" onClick={removeOption}>Remove Property</button>
+                                        </div>
+                                    </>
+                                );
+                                })
+                            }
+                            <button type="button" onClick={() => dispatch(addProperties(indexPoint))}>Add Property</button>
+                        </div>
+                        )}
+                    />
                     <div>
                         <button class="greenButton" type="submit">Submit</button>
                     </div>

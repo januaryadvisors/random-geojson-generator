@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { boundariesSelector } from '../../selectors/boundaries'
 import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector } from '../../selectors/features'
 import { generateGeoJSONQuery } from '../../actions/queries'
-import { setIndices } from '../../actions/features'
+import { setIndex } from '../../actions/features'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
 import editIcon from '../../assets/pencil.svg'
@@ -35,8 +35,8 @@ const SelectedPointsTable = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
     
-    const editPoint = (i, n) => {
-        dispatch(setIndices(i, n));
+    const editPoint = (i) => {
+        dispatch(setIndex(i));
         history.push('/edit-point');
     }
 
@@ -61,15 +61,15 @@ const SelectedPointsTable = (props) => {
                     {props.selectedPoints.length > 0 ? props.selectedPoints.map((feature, i) => {
                         return <>
                             <tr key={`pointRow${i}`}>
-                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
+                               <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
                             </tr>
                             {feature.propertyOptions.length > 0 ? feature.propertyOptions.map((propertyOption, n) => { return <tr key={`pointPropertyRow${i}${n}`}>
-                                <td>{propertyOption.name}</td>
-                                <td>{propertyOption.type}</td>
-                                <td>{propertyOption.values}</td>
-                                <td>{propertyOption.min}</td>
-                                <td>{propertyOption.max}</td>
-                                <img src={editIcon} alt="Edit Point" onClick={() => editPoint(i, n)} />
+                                    <td>{propertyOption.name}</td>
+                                    <td>{propertyOption.type}</td>
+                                    <td>{propertyOption.values}</td>
+                                    <td>{propertyOption.min}</td>
+                                    <td>{propertyOption.max}</td>
+                                    <img src={editIcon} alt="Edit Point" onClick={() => editPoint(i)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -84,8 +84,8 @@ const SelectedLinesTable = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const editLine = (i, n) => {
-        dispatch(setIndices(i, n));
+    const editLine = (i) => {
+        dispatch(setIndex(i));
         history.push('/edit-line');
     }
 
@@ -124,7 +124,7 @@ const SelectedLinesTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
-                                <img src={editIcon} alt="Edit Line" onClick={() => editLine(i, n)} />
+                                <img src={editIcon} alt="Edit Line" onClick={() => editLine(i)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -139,8 +139,8 @@ const SelectedPolygonsTable = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const editPolygon = (i, n) => {
-        dispatch(setIndices(i, n));
+    const editPolygon = (i) => {
+        dispatch(setIndex(i));
         history.push('/edit-polygon');
     }
 
@@ -177,7 +177,7 @@ const SelectedPolygonsTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
-                                <img src={editIcon} alt="Edit Polygon" onClick={() => editPolygon(i, n)} />
+                                <img src={editIcon} alt="Edit Polygon" onClick={() => editPolygon(i)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
