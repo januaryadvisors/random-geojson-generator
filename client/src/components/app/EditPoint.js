@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProperties, addProperties, editPoint } from '../../actions/features';
+import { deleteProperties, addProperties, editObject } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
 import { propertyTypeOptions } from '../../constants/formOptions';
 
@@ -17,7 +17,7 @@ export const EditPoint = () => {
     const currentPoint = state.features.points[indexPoint];
 
     const submit = (values) => {
-        dispatch(editPoint(indexPoint, values));
+        dispatch(editObject("point", indexPoint, values));
         history.push('/');
     }
 
@@ -32,8 +32,7 @@ export const EditPoint = () => {
                         <div>
                             {currentPoint.propertyOptions.map((item, index) => {
                                 const removeOption = () => { 
-                                    dispatch(deleteProperties(indexPoint, index));
-                                    console.log(currentPoint)
+                                    dispatch(deleteProperties("point", indexPoint, index));
                                 }
                                 return (
                                     <>
@@ -61,7 +60,7 @@ export const EditPoint = () => {
                                 );
                                 })
                             }
-                            <button type="button" onClick={() => dispatch(addProperties(indexPoint))}>Add Property</button>
+                            <button type="button" onClick={() => dispatch(addProperties("point", indexPoint))}>Add Property</button>
                         </div>
                         )}
                     />

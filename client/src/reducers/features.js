@@ -3,7 +3,7 @@ import {
   ADD_LINE, 
   ADD_POLYGON, 
   SET_INDEX, 
-  EDIT_POINT,
+  EDIT_OBJECT,
   DELETE_PROPERTIES,
   ADD_PROPERTIES
 } from '../actions/features';
@@ -38,27 +38,74 @@ const featuresReducer = (state = defaultState, action) => {
           ...state,
           index: action.index
         }
-    case EDIT_POINT:
-        const editedPoints = [...state.points];
-        editedPoints[action.index] = action.properties;
-        return { 
-          ...state,
-          points: editedPoints
-        }
-    case DELETE_PROPERTIES:
-        const deletedPropertiesPoints = [...state.points];
-        console.log(deletedPropertiesPoints[action.index].propertyOptions)
-        deletedPropertiesPoints[action.index].propertyOptions.splice(action.subIndex, 1);
-        return {
-          ...state,
-          points: deletedPropertiesPoints
+    case EDIT_OBJECT:
+        if (action.object === "point") {
+          const editedPoints = [...state.points];
+          editedPoints[action.index] = action.properties;
+          return { 
+            ...state,
+            points: editedPoints
+          }
+        } else if (action.object === "line") {
+          const editedLines = [...state.lines];
+          editedLines[action.index] = action.properties;
+          return { 
+            ...state,
+            lines: editedLines
+          }
+        } else {
+          const editedPolygons = [...state.polygons];
+          editedPolygons[action.index] = action.properties;
+          return { 
+            ...state,
+            polygons: editedPolygons
+          }
         }
     case ADD_PROPERTIES:
-        const addedPropertiesPoints = [...state.points];
-        addedPropertiesPoints[action.index].propertyOptions.push({ name: '', type: '', values: '', min: '', max: '' });
-        return {
-          ...state,
-          points: addedPropertiesPoints
+        if (action.object === "point") {
+          const addedPoints = [...state.points];
+          addedPoints[action.index].propertyOptions.push({ name: '', type: '', values: '', min: '', max: '' });
+          return {
+            ...state,
+            points: addedPoints
+          }
+        } else if (action.object === "line") {
+          const addedLines = [...state.lines];
+          addedLines[action.index].propertyOptions.push({ name: '', type: '', values: '', min: '', max: '' });
+          return {
+            ...state,
+            lines: addedLines
+          }
+        } else {
+          const addedPolygons = [...state.polygons];
+          addedPolygons[action.index].propertyOptions.push({ name: '', type: '', values: '', min: '', max: '' });
+          return {
+            ...state,
+            polygons: addedPolygons
+          }
+        }
+    case DELETE_PROPERTIES:
+        if (action.object === "point") {
+          const deletedPoints = [...state.points];
+          deletedPoints[action.index].propertyOptions.splice(action.subIndex, 1);
+          return {
+            ...state,
+            points: deletedPoints
+          }
+        } else if (action.object === "line") {
+          const deletedLines = [...state.lines];
+          deletedLines[action.index].propertyOptions.splice(action.subIndex, 1);
+          return {
+            ...state,
+            lines: deletedLines
+          }
+        } else {
+          const deletedPolygons = [...state.polygons];
+          deletedPolygons[action.index].propertyOptions.splice(action.subIndex, 1);
+          return {
+            ...state,
+            polygons: deletedPolygons
+          }
         }
     default:
         return state;

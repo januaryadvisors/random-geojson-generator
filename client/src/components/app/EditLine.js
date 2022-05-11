@@ -1,8 +1,8 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { propertyTypeOptions } from '../../constants/formOptions'
 import { useDispatch, useSelector } from 'react-redux';
-import { editLine } from '../../actions/features';
+import { addProperties, deleteProperties, editObject } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
 
 export const EditLine = () => {
@@ -10,61 +10,69 @@ export const EditLine = () => {
     const history = useHistory();
     const state = useSelector(state => state);
     
-    // get index/subIndex from dispatch state
-    const [index, subIndex] = [state.features.index, state.features.subIndex];
-    
-    // get lines from dispatch state
-    const currentNumVertices = state.features.lines[index].numVertices;
-    const currentMaxSegmentLength = state.features.lines[index].maxSegmentLength;
-    const currentMaxSegmentRotation = state.features.lines[index].maxSegmentRotation;
-    const currentProperties = state.features.lines[index].propertyOptions[subIndex];
+    // get index of current line
+    const indexLine = state.features.index;
+
+    // get current line
+    const currentLine = state.features.lines[indexLine];
 
     const submit = (values) => {
-        dispatch(editLine(index, subIndex, values));
+        dispatch(editObject("line", indexLine, values));
         history.push('/');
-    }
-
-    const properties = {
-        numVertices: currentNumVertices,
-        maxSegmentLength: currentMaxSegmentLength,
-        maxSegmentRotation: currentMaxSegmentRotation,
-        name: currentProperties.name,
-        type: currentProperties.type,
-        values: currentProperties.values,
-        min: currentProperties.min,
-        max: currentProperties.max,
     }
 
     return (
         <>    
-            <Formik initialValues={properties} onSubmit={submit}>
+            <Formik initialValues={currentLine} onSubmit={submit}>
                 <Form>
-                    <label htmlFor="numVertices"># of Vertices: </label>
-                    <Field class="fieldSmall" name="numVertices" type="text" />
+                    <label htmlFor="num">Number of Features: </label>
+                    <Field class="fieldSmall" name="num" type="number" />
+
+                    <label htmlFor="numVertices">Number of Vertices: </label>
+                    <Field class="fieldSmall" name="numVertices" type="number" />
                     
                     <label htmlFor="maxSegmentLength">Max Segment Length: </label>
-                    <Field class="fieldSmall" name="maxSegmentLength" type="text" />
+                    <Field class="fieldSmall" name="maxSegmentLength" type="number" />
 
                     <label htmlFor="maxSegmentRotation">Max Segment Rotation: </label>
-                    <Field class="fieldSmall" name="maxSegmentRotation" type="text" />
+                    <Field class="fieldSmall" name="maxSegmentRotation" type="number" />
 
-                    <label htmlFor="name">Property Name: </label>
-                    <Field class="fieldMedium" name="name" type="text" />
+                    <FieldArray name="propertyOptions" render={() => (
+                        <div>
+                            {currentLine.propertyOptions.map((item, index) => {
+                                const removeOption = () => { 
+                                    dispatch(deleteProperties("line", indexLine, index));
+                                }
+                                return (
+                                    <>
+                                        <label htmlFor={`propertyOptions.${index}.name`}>Property Name: </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.name`} type="text" />
+                                        
+                                        <label htmlFor={`propertyOptions.${index}.type`}>Property Type: </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.type`} as="select">
+                                            {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
+                                        </Field>
 
-                    <label htmlFor="type">Property Type: </label>
-                    <Field class="fieldMedium" name="type" as="select">
-                        {propertyTypeOptions.map(propertyTypeOption => (<option value={propertyTypeOption.value}>{propertyTypeOption.label}</option>))}
-                    </Field>
+                                        <label htmlFor={`propertyOptions.${index}.values`}>List of Values:</label>
+                                        <Field name={`propertyOptions.${index}.values`} as='textarea' />
+                                        
+                                        <label htmlFor={`propertyOptions.${index}.min`}>Min (length, words, #, etc): </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.min`} type="number" />
+                                        
+                                        <label htmlFor={`propertyOptions.${index}.max`}>Max (length, words, #, etc): </label>
+                                        <Field class="fieldMedium" name={`propertyOptions.${index}.max`} type="number" />
 
-                    <label htmlFor="values">List of Values:</label>
-                    <Field name="values" as='textarea' />
-
-                    <label htmlFor="min">Min (length, words, #, etc): </label>
-                    <Field class="fieldMedium" name="min" type="number" />
-
-                    <label htmlFor="max">Max (length, words, #, etc): </label>
-                    <Field class="fieldMedium" name="max" type="number" />
-
+                                        <div>
+                                            <button type="button" onClick={removeOption}>Remove Property</button>
+                                        </div>
+                                    </>
+                                );
+                                })
+                            }
+                            <button type="button" onClick={() => dispatch(addProperties("line", indexLine))}>Add Property</button>
+                        </div>
+                        )}
+                    />
                     <div>
                         <button class="greenButton" type="submit">Submit</button>
                     </div>
