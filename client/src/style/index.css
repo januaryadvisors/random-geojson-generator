@@ -149,6 +149,14 @@ input[type="file"] {
   display: none;
 }
 
+.max-width {
+  max-width: 100px;
+}
+
+.header-width {
+  width: 100px;
+}
+
 .greenButton {
   background-color: #04AA6D;
   color: white;
