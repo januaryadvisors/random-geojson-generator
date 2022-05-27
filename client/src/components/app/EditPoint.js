@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProperties, addProperties, editObject } from '../../actions/features';
+import { deleteProperties, addProperties, editObject, deleteObject } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
 import { propertyTypeOptions } from '../../constants/formOptions';
 
@@ -18,6 +18,11 @@ export const EditPoint = () => {
 
     const submit = (values) => {
         dispatch(editObject("point", indexPoint, values));
+        history.push('/');
+    }
+
+    const deletePoint = () => {
+        dispatch(deleteObject("point", indexPoint));
         history.push('/');
     }
 
@@ -64,7 +69,8 @@ export const EditPoint = () => {
                         </div>
                         )}
                     />
-                    <div>
+                    <div class="inlineButtons">
+                        <button class="redButton" type="button" onClick={deletePoint}>Delete Point</button>
                         <button class="greenButton" type="submit">Submit</button>
                     </div>
                 </Form>

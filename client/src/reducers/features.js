@@ -4,6 +4,7 @@ import {
   ADD_POLYGON, 
   SET_INDEX, 
   EDIT_OBJECT,
+  DELETE_OBJECT,
   DELETE_PROPERTIES,
   ADD_PROPERTIES
 } from '../actions/features';
@@ -59,6 +60,29 @@ const featuresReducer = (state = defaultState, action) => {
           return { 
             ...state,
             polygons: editedPolygons
+          }
+        }
+    case DELETE_OBJECT:
+        if (action.object === "point") {
+          const deletedPoint = [...state.points];
+          deletedPoint.splice(action.index, 1);
+          return {
+            ...state,
+            points: deletedPoint
+          }
+        } else if (action.object === "line") {
+          const deletedLine = [...state.lines];
+          deletedLine.splice(action.index, 1);
+          return {
+            ...state,
+            lines: deletedLine
+          }
+        } else {
+          const deletedPolygon = [...state.polygons];
+          deletedPolygon.splice(action.index, 1);
+          return {
+            ...state,
+            polygons: deletedPolygon
           }
         }
     case ADD_PROPERTIES:

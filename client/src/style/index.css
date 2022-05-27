@@ -165,6 +165,24 @@ input[type="file"] {
   justify-content: center;
 }
 
+.redButton {
+  background-color: #d9143a;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #d9143a;
+  border-radius: 7px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.inlineButtons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
 .fieldSmall {
   display: flex;
   margin-bottom: 20px;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { propertyTypeOptions } from '../../constants/formOptions'
 import { useDispatch, useSelector } from 'react-redux';
-import { addProperties, deleteProperties, editObject } from '../../actions/features';
+import { addProperties, deleteProperties, editObject, deleteObject } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
 
 export const EditLine = () => {
@@ -18,6 +18,11 @@ export const EditLine = () => {
 
     const submit = (values) => {
         dispatch(editObject("line", indexLine, values));
+        history.push('/');
+    }
+
+    const deleteLine = () => {
+        dispatch(deleteObject("line", indexLine));
         history.push('/');
     }
 
@@ -73,7 +78,8 @@ export const EditLine = () => {
                         </div>
                         )}
                     />
-                    <div>
+                    <div class="inlineButtons">
+                        <button class="redButton" type="button" onClick={deleteLine}>Delete Line</button>
                         <button class="greenButton" type="submit">Submit</button>
                     </div>
                 </Form>

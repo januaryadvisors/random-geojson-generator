@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { propertyTypeOptions } from '../../constants/formOptions'
 import { useDispatch, useSelector } from 'react-redux';
-import { addProperties, deleteProperties, editObject } from '../../actions/features';
+import { addProperties, deleteProperties, editObject, deleteObject } from '../../actions/features';
 import { useHistory } from 'react-router-dom';
 
 export const EditPolygon = () => {
@@ -18,6 +18,11 @@ export const EditPolygon = () => {
 
     const submit = (values) => {
         dispatch(editObject("polygon", indexPolygon, values));
+        history.push('/');
+    }
+
+    const deletePolygon = () => {
+        dispatch(deleteObject("polygon", indexPolygon));
         history.push('/');
     }
 
@@ -70,7 +75,8 @@ export const EditPolygon = () => {
                         </div>
                         )}
                     />
-                    <div>
+                    <div class="inlineButtons">
+                        <button class="redButton" type="button" onClick={deletePolygon}>Delete Polygon</button>
                         <button class="greenButton" type="submit">Submit</button>
                     </div>
                 </Form>
