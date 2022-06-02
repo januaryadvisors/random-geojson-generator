@@ -61,15 +61,15 @@ const SelectedPointsTable = (props) => {
                     {props.selectedPoints.length > 0 ? props.selectedPoints.map((feature, i) => {
                         return <>
                             <tr key={`pointRow${i}`}>
-                               <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
+                               <td rowSpan={feature.propertyOptions.length + 1}><img src={editIcon} alt="Edit Point" onClick={() => editPoint(i)} /> {feature.num}  </td>
                             </tr>
+                            
                             {feature.propertyOptions.length > 0 ? feature.propertyOptions.map((propertyOption, n) => { return <tr key={`pointPropertyRow${i}${n}`}>
                                     <td>{propertyOption.name}</td>
                                     <td>{propertyOption.type}</td>
                                     <td>{propertyOption.values}</td>
                                     <td>{propertyOption.min}</td>
                                     <td>{propertyOption.max}</td>
-                                    <img src={editIcon} alt="Edit Point" onClick={() => editPoint(i)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
