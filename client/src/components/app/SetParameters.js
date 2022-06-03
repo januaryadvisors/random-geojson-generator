@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { mutateAsync } from "redux-query";
@@ -6,8 +6,10 @@ import { toast } from "react-toastify";
 import { boundariesSelector } from '../../selectors/boundaries'
 import { selectedPointsSelector, selectedLinesSelector, selectedPolygonsSelector } from '../../selectors/features'
 import { generateGeoJSONQuery } from '../../actions/queries'
+import { setIndex } from '../../actions/features'
 import { clearStore } from '../../actions/clearStore'
 import { statusIsGood } from '../../utils/helpers'
+import editIcon from '../../assets/pencil.svg'
 
 const SelectedBBOX = (props) => {
     return (
@@ -30,6 +32,14 @@ const SelectedBBOX = (props) => {
 }
 
 const SelectedPointsTable = (props) => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+    
+    const editPoint = (i) => {
+        dispatch(setIndex(i));
+        history.push('/edit-point');
+    }
+
     return (
         <div>
             <h3>Selected Points</h3>
@@ -51,14 +61,15 @@ const SelectedPointsTable = (props) => {
                     {props.selectedPoints.length > 0 ? props.selectedPoints.map((feature, i) => {
                         return <>
                             <tr key={`pointRow${i}`}>
-                                <td rowSpan={feature.propertyOptions.length + 1}>{feature.num}</td>
+                               <td rowSpan={feature.propertyOptions.length + 1}><img src={editIcon} alt="Edit Point" onClick={() => editPoint(i)} /> {feature.num}  </td>
                             </tr>
+                            
                             {feature.propertyOptions.length > 0 ? feature.propertyOptions.map((propertyOption, n) => { return <tr key={`pointPropertyRow${i}${n}`}>
-                                <td>{propertyOption.name}</td>
-                                <td>{propertyOption.type}</td>
-                                <td>{propertyOption.values}</td>
-                                <td>{propertyOption.min}</td>
-                                <td>{propertyOption.max}</td>
+                                    <td>{propertyOption.name}</td>
+                                    <td>{propertyOption.type}</td>
+                                    <td>{propertyOption.values}</td>
+                                    <td>{propertyOption.min}</td>
+                                    <td>{propertyOption.max}</td>
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -70,6 +81,14 @@ const SelectedPointsTable = (props) => {
 }
 
 const SelectedLinesTable = (props) => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const editLine = (i) => {
+        dispatch(setIndex(i));
+        history.push('/edit-line');
+    }
+
     return (
         <div>
             <h3>Selected Lines</h3>
@@ -105,6 +124,7 @@ const SelectedLinesTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
+                                <img src={editIcon} alt="Edit Line" onClick={() => editLine(i)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -116,6 +136,14 @@ const SelectedLinesTable = (props) => {
 }
 
 const SelectedPolygonsTable = (props) => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const editPolygon = (i) => {
+        dispatch(setIndex(i));
+        history.push('/edit-polygon');
+    }
+
     return (
         <div>
             <h3>Selected Polygons</h3>
@@ -149,6 +177,7 @@ const SelectedPolygonsTable = (props) => {
                                 <td>{propertyOption.values}</td>
                                 <td>{propertyOption.min}</td>
                                 <td>{propertyOption.max}</td>
+                                <img src={editIcon} alt="Edit Polygon" onClick={() => editPolygon(i)} />
                                 </tr>
                             }) : <><td></td><td></td></>}
                         </>
@@ -167,6 +196,16 @@ export const SetParameters = () => {
     const selectedPoints = useSelector(selectedPointsSelector);
     const selectedLines = useSelector(selectedLinesSelector);
     const selectedPolygons = useSelector(selectedPolygonsSelector);
+
+    const [bboxText, setbboxText] = useState("Set Bounding Box");
+
+    useEffect(() => {
+        if (selectedBBOX.maxLat === "" && selectedBBOX.maxLng === "" && selectedBBOX.minLat === "" && selectedBBOX.minLng === "") {
+            setbboxText("Set Bounding Box");
+        } else {
+            setbboxText("Edit Bounding Box");
+        };
+    }, [selectedBBOX.maxLat, selectedBBOX.maxLng, selectedBBOX.minLat, selectedBBOX.minLng]);
 
     const noDataEntered = () => {
         return selectedBBOX.maxLat === "" && selectedBBOX.maxLng === "" && selectedBBOX.minLat === "" && selectedBBOX.minLng === "" && selectedPoints.length === 0 && selectedLines.length === 0 && selectedPolygons.length === 0
@@ -203,7 +242,7 @@ export const SetParameters = () => {
     return (
         <>  
             <SelectedBBOX selectedBBOX={selectedBBOX} />
-            <button onClick={() => history.push('/set-bbox')}>Set Bounding Box</button>
+            <button onClick={() => history.push('/set-bbox')}>{bboxText}</button>
 
             <SelectedPointsTable selectedPoints={selectedPoints} />
             <button onClick={() => history.push('/add-points')}>Add Points</button>

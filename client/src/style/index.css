@@ -51,6 +51,10 @@ button[disabled]{
   cursor: default;
 }
 
+img {
+  cursor: pointer;
+}
+
 textarea {
   display: flex;
   margin-bottom: 20px;
@@ -74,7 +78,7 @@ table {
   position: relative;
 }
 
-tr:hover {background-color: #ddd;}
+/* tr:hover {background-color: #ddd;} */
 
 th {
   padding-top: 12px;
@@ -159,6 +163,24 @@ input[type="file"] {
   margin-top: 40px;
   display: flex;
   justify-content: center;
+}
+
+.redButton {
+  background-color: #d9143a;
+  color: white;
+  font-weight: 500;
+  min-width: 250px;
+  border: 1px solid #d9143a;
+  border-radius: 7px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.inlineButtons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .fieldSmall {
